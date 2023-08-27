@@ -1,6 +1,8 @@
 {
   "name": "Org2",
   "version": "1.0.0",
+  "engines": "v",
+  "node": "18.x",
   "description": "",
   "keywords": [],
   "main": "src/index.js",
