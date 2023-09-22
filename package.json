@@ -1,11 +1,14 @@
 {
   "name": "Org2",
-  "version": "1.0.0",
-  "engines": "v",
-  "node": "18.x",
-  "description": "",
-  "keywords": [],
-  "main": "src/index.js",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "scully": "npx scully --",
+    "scully:serve": "npx scully serve --"
   "dependencies": {
     "loader-utils": "3.2.1",
     "react": "18.2.0",
