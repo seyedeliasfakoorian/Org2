@@ -9,7 +9,7 @@ on:
      - master
 
 jobs: Commit and Analyze 
- analyze: Analyze
+ analyze:
    name: Analyze
    runs-on: ubuntu-22.04
    permissions:
