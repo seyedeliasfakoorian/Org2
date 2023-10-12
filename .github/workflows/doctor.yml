@@ -1,0 +1,31 @@
+name: "Org2 Doctor"
+
+on:
+ push:
+   branches:
+     - master
+ pull_request:
+   branches:
+     - master
+
+jobs: Commit and Analyze 
+ analyze: Analyze
+   name: Analyze
+   runs-on: ubuntu-22.04
+   permissions:
+     actions: read
+     contents: read
+     security-events: write
+
+   steps:
+   - name: Checkout repository
+     uses: actions/checkout@v4
+
+   - name: Initialize Org2
+     uses:
+     with:
+       languages:
+       config-file:
+
+   - name: Perform Org2 Analysis
+     uses:
