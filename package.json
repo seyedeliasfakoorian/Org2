@@ -1,14 +1,16 @@
+
 {
   "name": "Org2",
-  "version": "0.0.0",
+  "version": "0.3.0",
+  "description": "The demo of 2.0-Website-Breaker",
+  "engines": {
+    "node": "18.x || 16.x"
+  },
+  "main": "app.py",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "scully": "npx scully --",
-    "scully:serve": "npx scully serve --"
+    "start": "node index.js",
+    "test": "node test.js"
+  },
   "dependencies": {
     "loader-utils": "3.2.1",
     "react": "18.2.0",
@@ -17,14 +19,17 @@
     "split-images": "1.0.4"
   },
   "devDependencies": {
-    "@babel/runtime": "7.13.8",
-    "typescript": "4.1.3"
+ "@babel/runtime": "7.13.8",
+ "typescript": "4.1.3"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+  "repository": {
+    "type": "git",
+    "url": "https://website-breaker-demo-2e92fbab7def.herokuapp.com/"
   },
-  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
 }
