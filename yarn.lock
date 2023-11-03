@@ -35,7 +35,7 @@
     pixelmatch "^4.0.2"
     tinycolor2 "^1.4.1"
 
-"@jimp/custom@^0.6.8", "@jimp/custom@>=0.3.5":
+"@jimp/custom@^0.6.8":
   version "0.6.8"
   resolved "https://registry.npmjs.org/@jimp/custom/-/custom-0.6.8.tgz"
   integrity sha512-FrYlzZRVXP2vuVwd7Nc2dlK+iZk4g6IaT1Ib8Z6vU5Kkwlt83FJIPJ2UUFABf3bF5big0wkk8ZUihWxE4Nzdng==
@@ -61,7 +61,7 @@
     core-js "^2.5.7"
     jpeg-js "^0.3.4"
 
-"@jimp/plugin-blit@^0.6.8", "@jimp/plugin-blit@>=0.3.5":
+"@jimp/plugin-blit@^0.6.8":
   version "0.6.8"
   resolved "https://registry.npmjs.org/@jimp/plugin-blit/-/plugin-blit-0.6.8.tgz"
   integrity sha512-7Tl6YpKTSpvwQbnGNhsfX2zyl3jRVVopd276Y2hF2zpDz9Bycow7NdfNU/4Nx1jaf96X6uWOtSVINcQ7rGd47w==
@@ -102,7 +102,7 @@
     "@jimp/utils" "^0.6.8"
     core-js "^2.5.7"
 
-"@jimp/plugin-crop@^0.6.8", "@jimp/plugin-crop@>=0.3.5":
+"@jimp/plugin-crop@^0.6.8":
   version "0.6.8"
   resolved "https://registry.npmjs.org/@jimp/plugin-crop/-/plugin-crop-0.6.8.tgz"
   integrity sha512-CbrcpWE2xxPK1n/JoTXzhRUhP4mO07mTWaSavenCg664oQl/9XCtL+A0FekuNHzIvn4myEqvkiTwN7FsbunS/Q==
@@ -175,7 +175,7 @@
     core-js "^2.5.7"
     load-bmfont "^1.4.0"
 
-"@jimp/plugin-resize@^0.6.8", "@jimp/plugin-resize@>=0.3.5":
+"@jimp/plugin-resize@^0.6.8":
   version "0.6.8"
   resolved "https://registry.npmjs.org/@jimp/plugin-resize/-/plugin-resize-0.6.8.tgz"
   integrity sha512-27nPh8L1YWsxtfmV/+Ub5dOTpXyC0HMF2cu52RQSCYxr+Lm1+23dJF70AF1poUbUe+FWXphwuUxQzjBJza9UoA==
@@ -183,7 +183,7 @@
     "@jimp/utils" "^0.6.8"
     core-js "^2.5.7"
 
-"@jimp/plugin-rotate@^0.6.8", "@jimp/plugin-rotate@>=0.3.5":
+"@jimp/plugin-rotate@^0.6.8":
   version "0.6.8"
   resolved "https://registry.npmjs.org/@jimp/plugin-rotate/-/plugin-rotate-0.6.8.tgz"
   integrity sha512-GbjETvL05BDoLdszNUV4Y0yLkHf177MnqGqilA113LIvx9aD0FtUopGXYfRGVvmtTOTouoaGJUc+K6qngvKxww==
@@ -191,7 +191,7 @@
     "@jimp/utils" "^0.6.8"
     core-js "^2.5.7"
 
-"@jimp/plugin-scale@^0.6.8", "@jimp/plugin-scale@>=0.3.5":
+"@jimp/plugin-scale@^0.6.8":
   version "0.6.8"
   resolved "https://registry.npmjs.org/@jimp/plugin-scale/-/plugin-scale-0.6.8.tgz"
   integrity sha512-GzIYWR/oCUK2jAwku23zt19V1ssaEU4pL0x2XsLNKuuJEU6DvEytJyTMXCE7OLG/MpDBQcQclJKHgiyQm5gIOQ==
@@ -260,11 +260,6 @@
   integrity sha512-7RDfxQ2C/rarNG9iso5vmnKQbcvlQjBIlF/p7/uYj72WeZgVCB+5t1fFBKJSU4WhniHX4jUMijK+wYGE3Y3bGw==
   dependencies:
     core-js "^2.5.7"
-
-"@popperjs/core@^2.11.8":
-  version "2.11.8"
-  resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.8.tgz"
-  integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
 
 any-base@^1.1.0:
   version "1.1.0"
@@ -496,7 +491,7 @@ react-dom@18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
-react@^18.2.0, react@18.2.0:
+react@18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
