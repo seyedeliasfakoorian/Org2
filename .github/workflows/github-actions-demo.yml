@@ -21,13 +21,12 @@ jobs:
       - name: Update author information
         run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
       - name: Raise PR
-        id:
         uses: peter-evans/create-pull-request@v3
         with:
           branch: "auto-pr-branch"
           base: main
           title: "Github-Actions"
-          commiter: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
+          committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
           body:
             We have some bugs that need to be fixed
           token: ${{ secrets.GITHUB_TOKEN }}
