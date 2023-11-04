@@ -26,7 +26,7 @@ jobs:
           branch: "auto-pr-branch"
           base: main
           title: "Github-Actions"
-          committer: eliasfakoorian@gmail.com
+          committer: eliasfakoorian@gmail.com ${{ github.actor }}
           body:
             We have some bugs that need to be fixed
           token: ${{ secrets.GITHUB_TOKEN }}
