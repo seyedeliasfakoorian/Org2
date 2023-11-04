@@ -26,7 +26,6 @@ jobs:
           branch: "auto-pr-branch"
           base: main
           title: "Github-Actions"
-          committer: ${{ env.GIT_COMMIT_AUTHOR_EMAIL }}
           body:
             We have some bugs that need to be fixed
           token: ${{ secrets.GITHUB_TOKEN }}
