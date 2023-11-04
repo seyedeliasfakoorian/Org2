@@ -16,7 +16,7 @@ jobs:
         run: |
           echo "🏗 This job's status is c."
           ls ${{ github.workspace}}
-      - name: Approve Pull Request2
+      - name: Approve Pull Request
         uses: juliangruber/approve-pull-request-action@v1
         with:
           github-token: ${{ secrets.APPROVER_DEMO }}
