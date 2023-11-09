@@ -3,13 +3,3 @@ body {
   background: white;
   text-align: bottom;
 }
-#break-website-button {
-  position: fixed;
-  background-color: rgb(249, 127, 127);
-  color: white;
-  padding: 2em;
-  font-size: 1.5em;
-  top: 2em;
-  right: 2em;
-  z-index: 10000;
-}
