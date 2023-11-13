@@ -22,4 +22,4 @@ jobs:
     if: ${{ github.event.ref }} == 'refs/heads/main'
     steps:
      - name: Deploy
-        run: echo "Your Webpage is being tested 🌎"
+     - run: echo "The ${{ github.repository }} webpage is being tested, it's status is ${{ job.status }} 🌎"
