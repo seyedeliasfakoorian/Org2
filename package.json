@@ -16,6 +16,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "split-images": "1.0.4",
+    "website-breaker": "^1.0.3"
   },
   "devDependencies": {
     "@babel/runtime": "7.13.8",
