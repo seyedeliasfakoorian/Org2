@@ -18,6 +18,6 @@ jobs:
       - run: echo "🏗 This job's status is ${{ job.status }}."
       - name: Approve Pull Request
         uses: juliangruber/approve-pull-request-action@v1
-        with:
+        with: |
           github-token: ${{ secrets.APPROVER_DEMO }}
           number: ${{ steps.demo-1.outputs.pull-request-number }}
