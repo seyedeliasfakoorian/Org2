@@ -16,8 +16,11 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🏗 This job's status is ${{ job.status }}."
-      - name: Approve Pull Request
-        uses: juliangruber/approve-pull-request-action@v1
-        with:
-          token: ${{ secrets.APPROVER_DEMO }}
-          number: ${{ steps.outputs.pull-request-number }}
+    TestWebpage:
+        name: Test Webpage
+    if: github.event.ref == 'refs/heads/main'
+    needs: [Build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        run: Your Webpage is being tested 🌎
