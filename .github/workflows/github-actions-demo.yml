@@ -16,11 +16,11 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🏗 This job's status is ${{ job.status }}."
-    TestWebpage:
+  TestWebpage:
         name: Test Webpage
     if: github.event.ref == 'refs/heads/main'
     needs: [Build]
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy
+      -name: Deploy
         run: Your Webpage is being tested 🌎
