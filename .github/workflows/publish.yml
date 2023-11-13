@@ -2,7 +2,7 @@ name: Test Webpage
 run-name: ${{ github.actor }} is testing and pushing 🚀
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
