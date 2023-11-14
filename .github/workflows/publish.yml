@@ -1,5 +1,5 @@
-name: Test Webpage
-run-name: ${{ github.actor }} is testing and pushing 🚀
+name: Config and Scan
+run-name: ${{ github.actor }} is configing and scaning 🚀
 on: [push]
 jobs:
   GitHub-Actions:
@@ -16,9 +16,17 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🏗 This job's status is ${{ job.status }}."
-  TestWebpage:
+    Mark stale issues and pull requests:
     runs-on: ubuntu-latest
-    name: Test Webpage
-    if: ${{ github.event.ref }} == 'refs/heads/main'
+    permissions:
+      issues: write
+      pull-requests: write
+
     steps:
-     - run: echo "The ${{ github.repository }} webpage is being tested, it's status is ${{ job.status }} 🌎"
+    - uses: actions/stale@v5
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        stale-issue-message: 'Stale issue message'
+        stale-pr-message: 'Stale pull request message'
+        stale-issue-label: 'no-issue-activity'
+        stale-pr-label: 'no-pr-activity'
