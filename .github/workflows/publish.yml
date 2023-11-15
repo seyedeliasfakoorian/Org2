@@ -16,12 +16,11 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🏗 This job's status is ${{ job.status }}."
-    Mark stale issues and pull requests:
+  Mark stale issues and pull requests:
     runs-on: ubuntu-latest
     permissions:
       issues: write
       pull-requests: write
-
     steps:
     - uses: actions/stale@v5
       with:
