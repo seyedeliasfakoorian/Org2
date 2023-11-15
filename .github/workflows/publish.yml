@@ -18,7 +18,6 @@ jobs:
       - run: echo "🏗 This job's status is ${{ job.status }}."
   Mark-stale-issues-and-PR:
     runs-on: ubuntu-latest
-    run: cron "18 11 * * *"
     permissions:
       issues: write
       pull-requests: write
