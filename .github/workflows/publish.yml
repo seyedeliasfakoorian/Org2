@@ -18,16 +18,13 @@ jobs:
       - run: echo "🏗 This job's status is ${{ job.status }}."
   Mark-stale-issues-and-PR:
     runs-on: ubuntu-latest
-  on: [push]
-    schedule:
-     - cron: '18 11 * * *'
-  jobs:
-    build:
     permissions:
       issues: write
       pull-requests: write
     steps:
     - uses: actions/stale@v5
+    run: |
+    - cron: '18 11 * * *'
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         stale-issue-message: 'Stale issue message'
