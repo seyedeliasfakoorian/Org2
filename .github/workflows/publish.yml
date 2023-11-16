@@ -1,6 +1,7 @@
 name: Config and Scan
-run-name: ${{ github.actor }} is Configing and Scanning 🚀
+run-name: ${{ github.actor }} is Configuring and Scanning 🚀
 on: [push]
+jobs:
   GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
@@ -15,7 +16,7 @@ on: [push]
         run: |
           ls ${{ github.workspace }}
       - run: echo "🏗 This job's status is ${{ job.status }}."
-   Mark-stale-issues-and-PRs:
+  Mark-stale-issues-and-PRs:
     runs-on: ubuntu-latest
     permissions:
       issues: write
