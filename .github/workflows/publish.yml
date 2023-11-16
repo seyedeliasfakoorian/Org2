@@ -4,6 +4,9 @@ on: [push]
 jobs:
   GitHub-Actions:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "📌 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
@@ -25,5 +28,3 @@ jobs:
     - uses: actions/stale@v5
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        stale-issue-message: 'Your issue is stale'
-        stale-pr-message: 'Your PR is stale'
