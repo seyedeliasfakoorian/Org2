@@ -25,6 +25,3 @@ jobs:
     - uses: actions/stale@v5
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-    permissions:
-      issues: write
-      pull-requests: write
