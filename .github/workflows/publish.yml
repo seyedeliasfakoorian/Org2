@@ -1,11 +1,12 @@
-name: Config and Scan
-run-name: ${{ github.actor }} is Configing and Scanning 🚀
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
-  GitHub-Actions:
+jobs:
+  Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "📌 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -14,13 +15,4 @@ on: [push]
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - run: echo "🏗 This job's status is ${{ job.status }}."
-   Mark-stale-issues-and-PRs:
-    runs-on: ubuntu-latest
-    permissions:
-      issues: write
-      pull-requests: write
-    steps:
-    - uses: actions/stale@v5
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."
