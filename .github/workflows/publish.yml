@@ -1,7 +1,6 @@
 name: Config and Scan
 run-name: ${{ github.actor }} is Configing and Scanning 🚀
 on: [push]
-jobs:
   GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
