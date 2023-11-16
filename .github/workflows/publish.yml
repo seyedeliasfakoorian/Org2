@@ -1,5 +1,5 @@
 name: Config and Scan
-run-name: ${{ github.actor }} is configing and scaning 🚀
+run-name: ${{ github.actor }} is testing configing and scaning 🚀
 on: [push]
 jobs:
   GitHub-Actions:
