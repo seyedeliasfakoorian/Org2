@@ -16,7 +16,7 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🏗 This job's status is ${{ job.status }}."
-    name: Mark-stale-issues-and-PRs
+  Mark-stale-issues-and-PRs:
     runs-on: ubuntu-latest
     permissions:
       issues: write
