@@ -1,3 +1,3 @@
-split-image "favicon.jpg" 4 4
+split-image src="public/favicon.jpg" 4 4
 
-split-image "favicon.jpg" 4 4 -r
+split-image src="public/favicon.jpg" 4 4 -r
