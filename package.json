@@ -8,10 +8,10 @@
   "main": "index.html",
   "scripts": {
     "start": "node index.js",
-    "test": "node test.js"
+    "test": "node test.js",
+    "security-scan": "bandit"
   },
   "dependencies": {
-    "bootstrap": "^5.3.2",
     "loader-utils": "3.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
