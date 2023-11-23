@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "node test.js",
-    "security-scan": "bandit"
+    "security-scan": "bandit-scan"
   },
   "dependencies": {
     "loader-utils": "3.2.1",
