@@ -1,7 +1,7 @@
 {
   "name": "Org2",
   "version": "0.3.0",
-  "description": "The demo of 2.0-Website-Breaker",
+  "description": "The demo of the 2.0-Website-Breaker",
   "engines": {
     "node": "18.x"
   },
