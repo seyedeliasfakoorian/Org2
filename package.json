@@ -5,7 +5,7 @@
   "engines": {
     "node": "18.x || 16.x"
   },
-  "main": "index.html",
+  "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "node test.js",
@@ -30,5 +30,5 @@
     "node",
     "heroku",
     "express"
-  ],
+  ]
 }
