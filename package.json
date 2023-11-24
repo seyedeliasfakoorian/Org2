@@ -3,35 +3,29 @@
   "version": "0.3.0",
   "description": "The demo of 2.0-Website-Breaker",
   "engines": {
-    "node": "18.x || 16.x"
+    "node": "18.x"
   },
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "start": "node index.js",
     "test": "node test.js",
     "security-scan": "bandit-scan"
   },
   "dependencies": {
-    "loader-utils": "3.2.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "split-images": "1.0.4",
-    "website-breaker": "^1.0.3"
+    "loader-utils": "1.0.0",
+    "react": "15.0.0",
+    "react-dom": "15.0.0",
+    "split-images": "1.0.0",
+    "website-breaker": "1.0.0"
   },
   "devDependencies": {
-    "@babel/runtime": "7.13.8",
-    "typescript": "5.3.2"
-}
+    "@babel/runtime": "7.0.0",
+    "typescript": "3.0.0"
   },
   "repository": {
     "type": "git",
     "url": "https://website-breaker-demo-2e92fbab7def.herokuapp.com/"
   },
-  "keywords": [
-    "node",
-    "heroku",
-    "express"
-  ],
+  "keywords": ["node", "heroku", "express"],
   "license": "MIT"
-  ]
 }
