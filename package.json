@@ -12,15 +12,16 @@
     "security-scan": "bandit-scan"
   },
   "dependencies": {
-    "loader-utils": "1.0.0",
-    "react": "15.0.0",
-    "react-dom": "15.0.0",
-    "split-images": "1.0.0",
-    "website-breaker": "1.0.0"
+    "loader-utils": "3.2.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "split-images": "1.0.4",
+    "website-breaker": "^1.0.3"
   },
   "devDependencies": {
-    "@babel/runtime": "7.0.0",
-    "typescript": "3.0.0"
+    "@babel/runtime": "7.13.8",
+    "typescript": "5.3.2"
+}
   },
   "repository": {
     "type": "git",
@@ -30,5 +31,6 @@
     "node",
     "heroku",
     "express"
-  ]
+  ],
+  "license": "MIT"
 }
