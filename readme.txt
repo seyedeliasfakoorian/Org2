@@ -1,0 +1,27 @@
+Org2, the demo of the 2.0-Website-Breaker:
+github.com/seyedeliasfakoorian/2.0-Website-Breaker
+
+Usage
+-------------------------------------------------------------------------
+The way to use Org2, (the seccond demo of the 2.0-Website-Breaker), 
+go to the link in the about section of the git resposotory and click on
+it. Then you will see the words, "Receiving Files...". Then after that, 
+the preview image will be spitted.
+
+FAQ
+-------------------------------------------------------------------------
+Q: The react app heroku is saying to check logs
+A: This is a common issue. Check the logs yourself and report an issue
+   on this resposotory. Or you can deploy to Heroku yourself.
+   DO NOT USE ANY OTHER REACT THAN HEROKU
+Q: Why does it take so long for the react app to spit the images?
+A: Splitting images on react apps takes some time. Because of Caching,
+   Image Loading Libraries, React Virtualization,
+   Component Structure and Lifecycle Methods, Network Latency, and
+   Image Size and Format.
+
+Others
+-------------------------------------------------------------------------
+This resposotory uses depfu, snyk, dependabot, and github actions now
+or in the future.
+The HTML file uses jQeary and has a small script to spit images.
