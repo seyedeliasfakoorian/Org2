@@ -1,5 +1,5 @@
 Org2, the demo of the 2.0-Website-Breaker:
-github.com/seyedeliasfakoorian/2.0-Website-Breaker
+https://github.com/seyedeliasfakoorian/2.0-Website-Breaker
 
 Usage
 -------------------------------------------------------------------------
