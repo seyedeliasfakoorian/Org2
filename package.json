@@ -5,7 +5,7 @@
   "engines": {
     "node": "18.x"
   },
-  "main": "index.html",
+  "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "node test.js",
@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.4.5",
-    "typescript": "^3.3.3"
+    "tape": "^4.7.0"
   },
   "repository": {
     "type": "git",
