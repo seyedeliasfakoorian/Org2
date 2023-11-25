@@ -14,7 +14,9 @@
   "dependencies": {
     "loader-utils": "^2.2.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "web-vitals": "^1.0.1",
+    "formik": "^1.0.0"
   },
   "devDependencies": {
     "@babel/runtime": "^7.4.5",
