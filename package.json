@@ -21,7 +21,7 @@
   "devDependencies": {
     "@babel/runtime": "^7.4.5",
     "tape": "^5.7.2",
-    "bandit-scan": "^x.x.x" # Assuming bandit-scan is a devDependency
+    "bandit-scan": "^x.x.x" // Assuming bandit-scan is a devDependency
   },
   "repository": {
     "type": "git",
