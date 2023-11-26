@@ -8,8 +8,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "node test.js",
-    "security-scan": "bandit-scan"
+    "test": "node test.js"
   },
   "dependencies": {
     "loader-utils": "^3.2.1",
@@ -21,7 +20,6 @@
   "devDependencies": {
     "@babel/runtime": "^7.4.5",
     "tape": "^5.7.2",
-    "bandit-scan": "^x.x.x"
   },
   "repository": {
     "type": "git",
