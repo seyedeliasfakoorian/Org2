@@ -1,0 +1,22 @@
+
+# Specify the package manager for your project
+package_manager: "npm"
+
+# Define the strategy for dependency updates
+update_strategy:
+
+  default: "bump"
+
+target_branch: "main"
+
+schedule:
+  interval: "daily"
+
+
+reviewers:
+  - "seyedeliasfakoorian"
+
+
+dependencies:
+  - type: "dependencies"
+  - type: "devDependencies"
