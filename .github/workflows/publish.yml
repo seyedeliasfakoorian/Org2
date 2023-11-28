@@ -24,7 +24,7 @@ jobs:
     - uses: actions/stale@v5
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-Add-pull-request-to-project:
+  Add-pull-request-to-project:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository code
