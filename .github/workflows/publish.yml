@@ -24,3 +24,23 @@ jobs:
     - uses: actions/stale@v5
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
+  Add-pull-request-to-project:
+    runs-on: ubuntu-latest
+    needs: Mark-stale-pull-requests
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Add to Project
+        run: |
+          # Extract necessary information from the pull request
+          PR_NUMBER=$(jq --raw-output .number "$GITHUB_EVENT_PATH")
+          PR_TITLE=$(jq --raw-output .pull_request.title "$GITHUB_EVENT_PATH")
+
+          gh api --method POST projects/11/columns/COLUMN_NUMBER/cards \
+            -F content_type="PullRequest" \
+            -F content_id="$PR_NUMBER" \
+            -F note="$PR_TITLE"
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
