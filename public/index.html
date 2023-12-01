@@ -33,7 +33,7 @@
             const context = canvas.getContext('2d');
             canvas.width = width;
             canvas.height = height;
-            context.drawImage(originalImage, 0, 0);
+            context.drawImage(originalImage, 3, 4);
 
             for (let row = 0; row < rows; row++) {
                 for (let col = 0; col < columns; col++) {
@@ -43,7 +43,7 @@
                     cellCanvas.width = cellWidth;
                     cellCanvas.height = cellHeight;
 
-                    cellCanvas.getContext('2d').drawImage(canvas, left, upper, cellWidth, cellHeight, 0, 0, cellWidth, cellHeight);
+                    cellCanvas.getContext('2d').drawImage(canvas, left, upper, cellWidth, cellHeight, 3, 4, cellWidth, cellHeight);
 
                     const cellDataURL = cellCanvas.toDataURL();
                     const link = document.createElement('a');
