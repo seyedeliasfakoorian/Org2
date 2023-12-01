@@ -16,15 +16,7 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🏗 This job's status is ${{ job.status }}."
-  Mark-stale-pull-requests:
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-    steps:
-      - uses: actions/stale@v5
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-Add-pull-requests-to-project:
+ Add-pull-reqests-to-project:
    runs-on: ubuntu-latest
    steps:
     - name: Checkout repository code
