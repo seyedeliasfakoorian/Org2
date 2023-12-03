@@ -29,3 +29,14 @@ jobs:
         run: |
           sudo npm install -g heroku
           heroku plugins:install heroku-builds
+      - name: Deploy to Heroku
+        run: |
+          heroku login -i
+          git push website-breaker-demo main
+      - name: Check Heroku deployment logs
+        run: |
+          # Placeholder for checking Heroku deployment logs
+          # Example: heroku logs --app website-breaker-demo
+      - name: Run vulnerability scanning
+        run: |
+          npm audit
