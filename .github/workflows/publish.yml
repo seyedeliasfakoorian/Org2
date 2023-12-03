@@ -44,4 +44,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: fix-heroku-issues
           body: |
-            This pull request can fix vulnerabilities when Heroku has an issue deploying or needs to check logs
+            This pull request can fix vulnerabilities when Heroku has an issue deploying or needs to check logs🚀
+
+            🌎 [View Site](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)
+            📚[Learn More](https://chat.openai.com/share/015c9910-e134-4eba-9f3c-09527101ab0f)
