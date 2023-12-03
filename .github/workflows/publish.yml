@@ -38,3 +38,10 @@ jobs:
       - name: Run vulnerability scanning
         run: |
           yarn audit
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: fix-heroku-issues
+          body: |
+            This pull request can fix vulnerabilities when Heroku has an issue deploying or needs to check logs
