@@ -37,4 +37,4 @@ jobs:
           heroku logs --app website-breaker-demo
       - name: Run vulnerability scanning
         run: |
-          npm i --package-lock-only
+          yarn audit
