@@ -34,8 +34,7 @@ jobs:
           heroku login -i
       - name: Check Heroku deployment logs
         run: |
-          # Placeholder for checking Heroku deployment logs
-          # Example: heroku logs --app website-breaker-demo
+          heroku logs --app website-breaker-demo
       - name: Run vulnerability scanning
         run: |
-          npm audit
+          npm i --package-lock-only
