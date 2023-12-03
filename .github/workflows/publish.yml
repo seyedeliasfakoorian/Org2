@@ -16,11 +16,20 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🏗 This job's status is ${{ job.status }}."
-  Mark-stale-pull-requests:
+  Fix-Heroku-Issues:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
     steps:
-      - uses: actions/stale@v5
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          node-version: '18'
+      - name: Install Heroku CLI
+        run: |
+          sudo npm install -g heroku
+          heroku plugins:install heroku-builds
+      - name: Deploy to Heroku
+        run: |
+          heroku login -i
+          git push heroku main
