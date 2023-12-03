@@ -29,7 +29,3 @@ jobs:
         run: |
           sudo npm install -g heroku
           heroku plugins:install heroku-builds
-      - name: Deploy to Heroku
-        run: |
-          heroku login -i
-          git push heroku main
