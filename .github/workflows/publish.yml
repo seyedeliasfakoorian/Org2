@@ -32,7 +32,7 @@ jobs:
       - name: Deploy to Heroku
         run: |
           heroku login -i
-          git push website-breaker-demo main
+          git push Org2 main
       - name: Check Heroku deployment logs
         run: |
           # Placeholder for checking Heroku deployment logs
