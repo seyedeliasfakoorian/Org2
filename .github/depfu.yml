@@ -4,9 +4,9 @@ package_manager: "npm"
 # Define the strategy for dependency updates
 update_strategy:
   default: "reduce"
-target_branch: "main"
-schedule:
-  interval: "daily"
+  target_branch: "main"
+  schedule:
+    interval: "daily"
 
 dependencies:
   - type: "dependencies"
@@ -14,8 +14,8 @@ dependencies:
 
 pull_requests:
   auto_merge: false
-  branch_name: "depfu"
-  title: "bump <dependency> from <from_version> to <to_version>"
+  branch_name: "depfu/<%= depfuPRBranchName %>"
+  title: "Bump <dependency> from <from_version> to <to_version>"
   labels:
     - "depfu"
   reviewers:
