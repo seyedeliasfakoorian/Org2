@@ -29,15 +29,16 @@ jobs:
         run: |
           sudo npm install -g heroku
           heroku plugins:install heroku-builds
-      - name: Deploy to Heroku
-        run: |
-          heroku login -i
       - name: Check Heroku deployment logs
         run: |
           heroku logs --app website-breaker-demo
       - name: Run vulnerability scanning
         run: |
           yarn audit
+      - name: Deploy to Heroku
+        run: |
+          heroku login -i
+          git push heroku main
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
