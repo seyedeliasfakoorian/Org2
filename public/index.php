@@ -1,19 +1,5 @@
 <?php
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="%PUBLIC_URL%/styles.css" />
-    <title>React-App</title>
-    <!-- Include jQuery from CDN -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI/tZ1XaIBlEYF8eVv9YHdL7RoCZ+ZlEi1R9eHoI=" crossorigin="anonymous"></script>
-</head>
-<body>
-
-  <script>
 // Load the head image
 $headImage = imagecreatefrompng('public/favicon.png');
 
@@ -51,14 +37,27 @@ for ($i = 0; $i < 3; $i++) {
 }
 
 // Output HTML with image sources
-echo '<div class="image-gallery">';
-foreach ($imageSources as $index => $src) {
-    echo '<img src="' . $src . '" alt="Piece ' . $index . '">';
-}
-echo '</div>';
-     </script>
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="%PUBLIC_URL%/styles.css" />
+    <title>React-App</title>
+    <!-- Include jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI/tZ1XaIBlEYF8eVv9YHdL7RoCZ+ZlEi1R9eHoI=" crossorigin="anonymous"></script>
+</head>
+<body>
 
+<div class="image-gallery">
+    <?php
+    foreach ($imageSources as $index => $src) {
+        echo '<img src="' . $src . '" alt="Piece ' . $index . '">';
+    }
+    ?>
+</div>
 
 </body>
 </html>
-?>
