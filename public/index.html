@@ -6,61 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>React-App</title>
-  <!-- Include jQuery from CDN -->
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI/tZ1XaIBlEYF8eVv9YHdL7RoCZ+ZlEi1R9eHoI=" crossorigin="anonymous"></script>
+    <!-- Include jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI/tZ1XaIBlEYF8eVv9YHdL7RoCZ+ZlEi1R9eHoI=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <p class="message">Receiving Files...</p>
 
-    <script>
-        const inputPath = "favicon.jpg"; // Image is in the public folder
-        const outputPath = "output_image";
-        const rows = 3;
-        const columns = 4;
-        const reverse = false;
-
-        const originalImage = new Image();
-        originalImage.src = inputPath;
-
-        originalImage.onload = () => {
-            const { width, height } = originalImage;
-            const cellWidth = width / columns;
-            const cellHeight = height / rows;
-
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
-            canvas.width = width;
-            canvas.height = height;
-            context.drawImage(originalImage, 3, 4);
-
-            for (let row = 0; row < rows; row++) {
-                for (let col = 0; col < columns; col++) {
-                    const left = col * cellWidth;
-                    const upper = row * cellHeight;
-                    const cellCanvas = document.createElement('canvas');
-                    cellCanvas.width = cellWidth;
-                    cellCanvas.height = cellHeight;
-
-                    cellCanvas.getContext('2d').drawImage(canvas, left, upper, cellWidth, cellHeight, 3, 4, cellWidth, cellHeight);
-
-                    const cellDataURL = cellCanvas.toDataURL();
-                    const link = document.createElement('a');
-                    link.href = cellDataURL;
-
-                    if (reverse) {
-                        link.download = `${outputPath}_${col}_${row}.jpg`;
-                    } else {
-                        link.download = `${outputPath}_${row}_${col}.jpg`;
-                    }
-
-                    link.click();
-                }
-            }
-        };
-    </script>
-</div>
+  <?php include 'app.php'; ?>
 
 </body>
 </html>

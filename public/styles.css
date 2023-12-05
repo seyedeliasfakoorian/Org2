@@ -1,20 +1,13 @@
-/* public/styles.css */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 50px;
 }
 
-.container {
-    text-align: center;
-}
-
-.message {
-    font-size: 18px;
-    margin-bottom: 20px;
+.image-gallery img {
+  margin: 5px;
+  border: 1px solid #ddd;
+  padding: 5px;
+  width: 100px;
+  height: auto;
 }
