@@ -38,6 +38,7 @@ jobs:
       - name: Deploy to Heroku
         run: |
           heroku login -i
+          echo $HEROKU_API_KEY | heroku login --interactive
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
