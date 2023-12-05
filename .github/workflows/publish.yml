@@ -38,7 +38,6 @@ jobs:
       - name: Deploy to Heroku
         run: |
           heroku login -i
-          git push heroku main
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
