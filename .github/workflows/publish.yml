@@ -37,9 +37,11 @@ jobs:
           yarn audit
       - name: Deploy to Heroku
         run: |
-          heroku login -i
-          echo $HEROKU_API_KEY | heroku login --interactive
+          heorku login -i
+          curl https://cli-assets.heroku.com/install.sh | sh
           git push heroku master
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
