@@ -39,10 +39,11 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: github actions
+          branch: github-actions
           commit-message: Fix Heroku Vulnerabilities
           delete-branch: true
-          labels: github actions
+          labels: |
+           github actions
           reviewers: seyedeliasfakoorian
           title: Fix Heroku Vulnerabilities
           body: |
