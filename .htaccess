@@ -1,0 +1,23 @@
+# This is a basic Apache configuration file
+
+# ServerName defines the hostname of the server
+ServerName https://website-breaker-demo-2e92fbab7def.herokuapp.com/
+
+# DocumentRoot specifies the root directory of the website
+DocumentRoot public/index.php
+
+# Directory directive controls settings for a specific directory
+<Directory public/index.php>
+    # AllowOverride controls what directives may be placed in .htaccess files
+    AllowOverride All
+
+    # Options controls various directory options
+    Options Indexes FollowSymLinks
+
+    # Require all granted allows access to the directory for everyone
+    Require all granted
+</Directory>
+
+# ErrorLog and CustomLog define the location of error and access logs
+ErrorLog ${APACHE_LOG_DIR}/error.log
+CustomLog ${APACHE_LOG_DIR}/access.log combined
