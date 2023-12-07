@@ -44,6 +44,7 @@ jobs:
           delete-branch: true
           labels: github actions
           reviewers: seyedeliasfakoorian
+          title: Fix Heroku Vulnerabilities
           body: |
             This pull request can fix vulnerabilities when Heroku has an issue deploying or needs to check logs🚀
             🌎 [View Site](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)
