@@ -39,9 +39,11 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: github-actions
+          branch: github actions
           commit-message: Fix Heroku Vulnerabilities
           delete-branch: true
+          labels: github actions
+          reviewers: seyedeliasfakoorian
           body: |
             This pull request can fix vulnerabilities when Heroku has an issue deploying or needs to check logs🚀
             🌎 [View Site](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)
