@@ -1,0 +1,21 @@
+# Enable the use of the .htaccess file
+RewriteEngine On
+
+# Redirect all requests to the "example.com" domain
+RewriteCond %{HTTP_HOST} !^website-breaker-demo-2e92fbab7def\.herokuapp\.com$
+RewriteRule ^(.*)$ https://website-breaker-demo-2e92fbab7def.herokuapp.com/$1 [L,R=301]
+
+# Set the default page to "index.php"
+DirectoryIndex index.php
+
+# Disable directory listing
+Options -Indexes
+
+# Deny access to a specific file
+<Files "readme.txt">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Set the default character set to UTF-8
+AddDefaultCharset UTF-8
