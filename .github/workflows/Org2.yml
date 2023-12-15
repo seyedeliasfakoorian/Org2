@@ -35,27 +35,3 @@ jobs:
           body: |
             This pull request can fix vulnerabilities when Heroku has an issue deploying or needs to check logs🚀
             🌎 [View Site](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)
-      - name: Renovate
-        uses: renovatebot/github-action@v39.2.1
-        with:
-          # Add any necessary configuration options for Renovate
-          token: ${{ secrets.GITHUB_TOKEN }}
-          config: |
-            {
-              "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-              "extends": ["config:base", ":fileOnly"],
-              "fileMatch": ["index.php", "styles.css"],
-              "onboarding": false,
-              "autodiscover": true,
-              "platform": "github",
-              "logLevel": "debug",
-              "autoland": false,
-              "autodiscoverPaths": ["index.php", "styles.css"],
-              "createPullRequest": true,
-              "createPullRequestLabel": "github actions",
-              "createPullRequestLabelAssignees": ["seyedeliasfakoorian"],
-              "createPullRequestTitle": "Fix Heroku Vulnerabilities",
-              "createPullRequestBody": "This pull request can fix vulnerabilities when Heroku has an issue deploying or needs to check logs🚀\n🌎 [View Site](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)",
-              "createPullRequestDeleteBranch": true,
-              "onError": ["createPullRequest"]
-            }
