@@ -10,7 +10,7 @@ run-name: ${{ github.actor }} is Configuring and Scanning 🚀
 jobs:
   Fix-Heroku-Issues:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout repository code
         uses: actions/checkout@v4
@@ -22,15 +22,14 @@ jobs:
 
       - name: Install Heroku CLI and GitHub CLI
         run: |
-          sudo npm install -g heroku
-          heroku plugins:install heroku-builds
-          sudo apt-get install -y gh
+          sudo npm install -g heroku || echo "Heroku CLI installation failed"
+          heroku plugins:install heroku-builds || echo "Heroku builds installation failed"
+          sudo apt-get install -y gh || echo "GitHub CLI installation failed"
 
-      - name: Set Heroku API Key
-        run: echo "HEROKU_API_KEY=${{ secrets.HEROKU_API_KEY }}" >> $GITHUB_ENV
-
-      - name: Set up GitHub CLI with token
-        run: echo "GH_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+      - name: Set up CLI and API
+        run: |
+          echo "HEROKU_API_KEY=${{ secrets.HEROKU_API_KEY }}" >> $GITHUB_ENV
+          echo "GH_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
 
       - name: Check Heroku Deployment Status
         id: heroku_status
@@ -50,7 +49,7 @@ jobs:
           PR_BODY="This pull request was generated because Heroku needs to check logs or deployment is failing 🚀 \n\ View Site: [Heroku App](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)"
 
           echo "Attempting to create a pull request..."
-          gh pr create --title "$PR_TITLE" --body "$PR_BODY" --base main --head github-actions --label "github actions"
+          gh pr create --title "$PR_TITLE" --body "$PR_BODY" --base main --head github-actions --label "github actions" --draft
 
           # Delete the branch
           git push origin --delete github-actions
