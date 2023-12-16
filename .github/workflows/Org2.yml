@@ -40,3 +40,4 @@ jobs:
           fi
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
