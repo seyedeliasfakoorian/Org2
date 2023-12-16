@@ -26,7 +26,7 @@ jobs:
         run: yarn audit
 
       - name: Set Heroku API Key
-        run: echo "${{ secrets.HEROKU_API_KEY }}" > ~/.netrc
+        run: echo "machine api.heroku.com login _ password=${{ secrets.HEROKU_API_KEY }}" > ~/.netrc
 
       - name: Login and Access to Heroku Container
         run: |
