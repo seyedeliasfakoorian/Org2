@@ -14,7 +14,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '14'  # Adjust the Node.js version as needed
 
       - name: Install Heroku CLI and GitHub CLI
         run: |
@@ -25,9 +25,11 @@ jobs:
       - name: Reduce Vulnerabilities
         run: yarn audit
 
+      - name: Set Heroku API Key
+        run: echo "${{ secrets.HEROKU_API_KEY }}" > ~/.netrc
+
       - name: Login and Access to Heroku Container
         run: |
-          heroku login -i
           heroku git:remote -a website-breaker-demo
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
@@ -54,5 +56,3 @@ jobs:
           else
             echo "✅ Heroku deployment successful."
           fi
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
