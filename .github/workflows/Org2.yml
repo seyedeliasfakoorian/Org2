@@ -24,11 +24,11 @@ jobs:
           HEROKU_APP_NAME="website-breaker-demo"
           # Placeholder for logic to determine if Heroku needs to check logs
           # For example, you can use the Heroku API to check the status of the last deployment
-          HEROKU_STATUS=$(heroku releases -n 1 --json --app $HEROKU_APP_NAME | jq -r '.[0].status')
+          HEROKU_STATUS=$(heroku releases -n 1 --json --app website-breaker-demo | jq -r '.[0].status')
           if [ "$HEROKU_STATUS" == "failed" ]; then
             echo "❌ Heroku deployment failed. Creating a pull request for checking logs."
             # Create a pull request
-            PR_TITLE="Automated Pull Request - Deployment Check"
+            PR_TITLE="Fix Heroku Vulnerabilities"
             PR_BODY="This pull request was automatically generated to trigger Heroku to check logs.🚀\n🌎 [View Site](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)"
             hub pull-request -m "$PR_TITLE" -b main -h github-actions -m "$PR_BODY"
           else
