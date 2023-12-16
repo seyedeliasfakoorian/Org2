@@ -18,6 +18,9 @@ jobs:
         run: |
           sudo npm install -g heroku
           heroku plugins:install heroku-builds
+      - name: Install hub
+        run: |
+          sudo snap install hub --classic
       - name: Reduce Vulnerabilities
         run: yarn audit
       - name: Login and Access to Heroku Container
