@@ -1,6 +1,6 @@
 name: Config and Scan
-run-name: ${{ github.actor }} is Configuring and Scanning 🚀
 on: [push]
+run-name: ${{ github.actor }} is Configuring and Scanning 🚀
 jobs:
   Fix-Heroku-Issues:
     runs-on: ubuntu-latest
@@ -17,7 +17,7 @@ jobs:
           heroku plugins:install heroku-builds
       - name: Reduce Vulnerabilities
         run: yarn audit
-      - name: Deploy to Heroku
+      - name: Login and Access to Heroku Container
         run: |
           heroku login -i
           heroku git:remote -a website-breaker-demo
