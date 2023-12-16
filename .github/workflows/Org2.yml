@@ -10,23 +10,28 @@ jobs:
     steps:
       - name: Checkout repository code
         uses: actions/checkout@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
-      - name: Install Heroku CLI and Hub
+          node-version: '14'  # Adjust the Node.js version as needed
+
+      - name: Install Heroku CLI and hub
         run: |
           sudo npm install -g heroku
           heroku plugins:install heroku-builds
           sudo snap install hub --classic
+
       - name: Reduce Vulnerabilities
         run: yarn audit
+
       - name: Login and Access to Heroku Container
         run: |
           heroku login -i
           heroku git:remote -a website-breaker-demo
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
       - name: Create Pull Request
         run: |
           HEROKU_APP_NAME="website-breaker-demo"
@@ -43,7 +48,10 @@ jobs:
             PR_TITLE="Fix Heroku Vulnerabilities"
             PR_BODY="This pull request was automatically generated to trigger Heroku to check logs.🚀\n🌎 [View Site](https://$HEROKU_APP_NAME.herokuapp.com/)"
 
-            hub pull-request -m "$PR_TITLE" -b main -h github-actions -m "$PR_BODY"
+            echo "Attempting to create a pull request..."
+            hub pull-request -m "$PR_TITLE" -b main -h github-actions -m "$PR_BODY" || { echo "Error creating pull request"; exit 1; }
+
+            echo "Pull request created successfully."
           else
             echo "✅ Heroku deployment successful."
           fi
