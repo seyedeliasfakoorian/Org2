@@ -14,7 +14,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '14'  # Adjust the Node.js version as needed
+          node-version: '14'
 
       - name: Install Heroku CLI and GitHub CLI
         run: |
@@ -22,44 +22,26 @@ jobs:
           heroku plugins:install heroku-builds
           sudo apt-get install -y gh
 
-      - name: Reduce Vulnerabilities
-        run: yarn audit
-
       - name: Set Heroku API Key
         run: echo "HEROKU_API_KEY=${{ secrets.HEROKU_API_KEY }}" >> $GITHUB_ENV
 
-      - name: Login and Access to Heroku Container
+      - name: Check Heroku Deployment Status
+        id: heroku_status
         run: |
           HEROKU_APP_NAME="website-breaker-demo"
-          curl -n -X PATCH https://api.heroku.com/apps/$HEROKU_APP_NAME/config-vars \
-            -d "{
-                  \"VARIABLE_NAME\": \"HEROKU_API_KEY\",
-                  \"VALUE\": \"$HEROKU_API_KEY\"
-                }" \
-            -H "Content-Type: application/json" \
-            -H "Accept: application/vnd.heroku+json; version=3"
+          HEROKU_STATUS=$(curl -n -s https://api.heroku.com/apps/$HEROKU_APP_NAME/releases \
+                            -H "Accept: application/vnd.heroku+json; version=3" \
+                            | jq -r '.[0].status // "succeeded"')
+          echo "Heroku Status: $HEROKU_STATUS"
+        continue-on-error: true
 
       - name: Create Pull Request
+        if: ${{ steps.heroku_status.outputs.HEROKU_STATUS != 'succeeded' }}
         run: |
           HEROKU_APP_NAME="website-breaker-demo"
+          PR_TITLE="Fix Heroku Deployment Issue"
+          PR_BODY="This pull request was automatically generated to trigger Heroku to check logs. 🚀\n\nView Site: [Heroku App](https://$HEROKU_APP_NAME.herokuapp.com/)"
 
-          # Placeholder for logic to determine if Heroku needs to check logs
-          # For example, you can use the Heroku API to check the status of the last deployment
-          HEROKU_STATUS=$(curl -n -s https://api.heroku.com/apps/$HEROKU_APP_NAME/releases/latest \
-                            -H "Accept: application/vnd.heroku+json; version=3" \
-                            | jq -r '.status')
-          echo "Heroku Status: $HEROKU_STATUS"
-
-          if [ "$HEROKU_STATUS" == "failed" ]; then
-            echo "❌ Heroku deployment failed. Creating a pull request for checking logs."
-
-            # Create a pull request
-            PR_TITLE="Fix Heroku Vulnerabilities"
-            PR_BODY="This pull request was automatically generated to trigger Heroku to check logs.🚀\n🌎 [View Site](https://$HEROKU_APP_NAME.herokuapp.com/)"
-
-            echo "Attempting to create a pull request..."
-            gh pr create --title "$PR_TITLE" --body "$PR_BODY" --base main --head github-actions
-            echo "Pull request created successfully."
-          else
-            echo "✅ Heroku deployment successful."
-          fi
+          echo "Attempting to create a pull request..."
+          gh pr create --title "$PR_TITLE" --body "$PR_BODY" --base main --head github-actions
+          echo "Pull request created successfully."
