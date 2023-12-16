@@ -15,23 +15,22 @@ jobs:
         run: |
           sudo npm install -g heroku
           heroku plugins:install heroku-builds
-      - name: Check Heroku deployment logs
-        run: heroku logs --app website-breaker-demo
       - name: Reduce Vulnerabilities
         run: yarn audit
       - name: Deploy to Heroku
         run: heroku login -i
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: github-actions
-          commit-message: Fix Heroku Vulnerabilities
-          delete-branch: true
-          labels: |
-           github actions
-          reviewers: seyedeliasfakoorian
-          title: Fix Heroku Vulnerabilities
-          body: |
-            This pull request can fix vulnerabilities when Heroku has an issue deploying or needs to check logs🚀
-            🌎 [View Site](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)
+        run: |
+          HEROKU_APP_NAME="website-breaker-demo"
+          # Placeholder for logic to determine if Heroku needs to check logs
+          # For example, you can use the Heroku API to check the status of the last deployment
+          HEROKU_STATUS=$(heroku releases -n 1 --json --app $HEROKU_APP_NAME | jq -r '.[0].status')
+          if [ "$HEROKU_STATUS" == "failed" ]; then
+            echo "❌ Heroku deployment failed. Creating a pull request for checking logs."
+            # Create a pull request
+            PR_TITLE="Automated Pull Request - Deployment Check"
+            PR_BODY="This pull request was automatically generated to trigger Heroku to check logs.🚀\n🌎 [View Site](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)"
+            hub pull-request -m "$PR_TITLE" -b main -h github-actions -m "$PR_BODY"
+          else
+            echo "✅ Heroku deployment successful."
+          fi
