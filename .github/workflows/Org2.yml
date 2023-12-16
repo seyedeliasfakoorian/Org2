@@ -26,13 +26,18 @@ jobs:
         run: yarn audit
 
       - name: Set Heroku API Key
-        run: echo "machine api.heroku.com login _ password=${{ secrets.HEROKU_API_KEY }}" > ~/.netrc
+        run: echo "HEROKU_API_KEY=${{ secrets.HEROKU_API_KEY }}" >> $GITHUB_ENV
 
       - name: Login and Access to Heroku Container
         run: |
-          heroku git:remote -a website-breaker-demo
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_APP_NAME="website-breaker-demo"
+          curl -n -X PATCH https://api.heroku.com/apps/$HEROKU_APP_NAME/config-vars \
+            -d "{
+                  \"VARIABLE_NAME\": \"HEROKU_API_KEY\",
+                  \"VALUE\": \"$HEROKU_API_KEY\"
+                }" \
+            -H "Content-Type: application/json" \
+            -H "Accept: application/vnd.heroku+json; version=3"
 
       - name: Create Pull Request
         run: |
@@ -40,7 +45,9 @@ jobs:
 
           # Placeholder for logic to determine if Heroku needs to check logs
           # For example, you can use the Heroku API to check the status of the last deployment
-          HEROKU_STATUS=$(heroku releases -n 1 --json --app $HEROKU_APP_NAME | jq -r '.[0].status')
+          HEROKU_STATUS=$(curl -n -s https://api.heroku.com/apps/$HEROKU_APP_NAME/releases/latest \
+                            -H "Accept: application/vnd.heroku+json; version=3" \
+                            | jq -r '.status')
           echo "Heroku Status: $HEROKU_STATUS"
 
           if [ "$HEROKU_STATUS" == "failed" ]; then
