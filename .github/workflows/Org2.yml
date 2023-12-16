@@ -18,7 +18,12 @@ jobs:
       - name: Reduce Vulnerabilities
         run: yarn audit
       - name: Deploy to Heroku
-        run: heroku login -i
+        run: |
+          heroku login -i
+          heroku git:remote -a website-breaker-demo
+          git push heroku main
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       - name: Create Pull Request
         run: |
           HEROKU_APP_NAME="website-breaker-demo"
@@ -34,3 +39,5 @@ jobs:
           else
             echo "✅ Heroku deployment successful."
           fi
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
