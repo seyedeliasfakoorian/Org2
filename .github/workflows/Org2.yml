@@ -29,6 +29,9 @@ jobs:
       - name: Set Heroku API Key
         run: echo "HEROKU_API_KEY=${{ secrets.HEROKU_API_KEY }}" >> $GITHUB_ENV
 
+      - name: Set up GitHub CLI with token
+        run: echo "GH_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+
       - name: Check Heroku Deployment Status
         id: heroku_status
         run: |
@@ -51,4 +54,4 @@ jobs:
 
           # Delete the branch
           git push origin --delete github-actions
-          echo "✔ Pull request created successfully"
+          echo "✔ Pull request generated successfully"
