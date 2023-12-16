@@ -14,12 +14,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: Install Heroku CLI
+      - name: Install Heroku CLI and Hub
         run: |
           sudo npm install -g heroku
           heroku plugins:install heroku-builds
-      - name: Install hub
-        run: |
           sudo snap install hub --classic
       - name: Reduce Vulnerabilities
         run: yarn audit
