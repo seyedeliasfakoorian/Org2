@@ -34,14 +34,13 @@ jobs:
                             | jq -r '.[0].status // "succeeded"')
           echo "Heroku Status: $HEROKU_STATUS"
         continue-on-error: true
-
       - name: Create Pull Request
         if: ${{ steps.heroku_status.outputs.HEROKU_STATUS != 'succeeded' }}
         run: |
           HEROKU_APP_NAME="website-breaker-demo"
-          PR_TITLE="Fix Heroku Deployment Issue"
+          PR_TITLE="Fix Heroku Vulnerabilities"
           PR_BODY="This pull request was automatically generated to trigger Heroku to check logs. 🚀\n\nView Site: [Heroku App](https://$HEROKU_APP_NAME.herokuapp.com/)"
 
           echo "Attempting to create a pull request..."
-          gh pr create --title "$PR_TITLE" --body "$PR_BODY" --base main --head github-actions
-          echo "Pull request created successfully."
+          gh pr create --title "$PR_TITLE" --body "$PR_BODY" --base main --head github-actions --label "github actions" --delete-branch
+          echo "✔ Pull request created successfully."
