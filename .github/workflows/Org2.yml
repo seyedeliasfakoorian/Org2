@@ -21,7 +21,6 @@ jobs:
         run: |
           heroku login -i
           heroku git:remote -a website-breaker-demo
-          git push heroku main
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       - name: Create Pull Request
