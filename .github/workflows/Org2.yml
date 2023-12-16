@@ -14,13 +14,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '18'
 
-      - name: Install Heroku CLI and hub
+      - name: Install Heroku CLI and GitHub CLI
         run: |
           sudo npm install -g heroku
           heroku plugins:install heroku-builds
-          sudo snap install hub --classic
+          sudo apt-get install -y gh
 
       - name: Reduce Vulnerabilities
         run: yarn audit
@@ -49,15 +49,10 @@ jobs:
             PR_BODY="This pull request was automatically generated to trigger Heroku to check logs.🚀\n🌎 [View Site](https://$HEROKU_APP_NAME.herokuapp.com/)"
 
             echo "Attempting to create a pull request..."
-            if ! hub pull-request -m "$PR_TITLE" -b main -h github-actions -m "$PR_BODY"; then
-              echo "Error creating pull request"
-              exit 1
-            fi
-
+            gh pr create --title "$PR_TITLE" --body "$PR_BODY" --base main --head github-actions
             echo "Pull request created successfully."
           else
             echo "✅ Heroku deployment successful."
           fi
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
