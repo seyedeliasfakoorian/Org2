@@ -18,7 +18,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '18'
 
       - name: Install Heroku CLI and GitHub CLI
         run: |
@@ -44,8 +44,11 @@ jobs:
         run: |
           HEROKU_APP_NAME="website-breaker-demo"
           PR_TITLE="Fix Heroku Vulnerabilities"
-          PR_BODY="This pull request was generated because heroku needs to check logs or deployment is failing 🚀 \n\ View Site: [Heroku App](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)"
+          PR_BODY="This pull request was generated because Heroku needs to check logs or deployment is failing 🚀 \n\ View Site: [Heroku App](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)"
 
           echo "Attempting to create a pull request..."
-          gh pr create --title "$PR_TITLE" --body "$PR_BODY" --base main --head github-actions --label "github actions" --delete-branch
-          echo "✔ Pull request created successfully."
+          gh pr create --title "$PR_TITLE" --body "$PR_BODY" --base main --head github-actions --label "github actions"
+
+          # Delete the branch
+          git push origin --delete github-actions
+          echo "✔ Pull request created successfully"
