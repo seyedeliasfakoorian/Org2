@@ -1,5 +1,8 @@
 name: Config and Scan
-on: [push]
+on:
+  push:
+    branches:
+      - main
 run-name: ${{ github.actor }} is Configuring and Scanning 🚀
 jobs:
   Fix-Heroku-Issues:
@@ -25,27 +28,22 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       - name: Create Pull Request
         run: |
-        HEROKU_APP_NAME="website-breaker-demo"
-        
-        # Placeholder for logic to determine if Heroku needs to check logs
-        # For example, you can use the Heroku API to check the status of the last deployment
-        HEROKU_STATUS=$(heroku releases -n 1 --json --app $HEROKU_APP_NAME | jq -r '.[0].status')
-        echo "Heroku Status: $HEROKU_STATUS"
-        
-        if [ "$HEROKU_STATUS" == "failed" ]; then
-          echo "❌ Heroku deployment failed. Creating a pull request for checking logs."
-          
-          # Create a pull request
-          PR_TITLE="Fix Heroku Vulnerabilities"
-          PR_BODY="This pull request was automatically generated to trigger Heroku to check logs.🚀\n🌎 [View Site](https://$HEROKU_APP_NAME.herokuapp.com/)"
-          
-          hub pull-request -m "$PR_TITLE" -b main -h github-actions -m "$PR_BODY"
-        else
-          echo "✅ Heroku deployment successful."
-        fi
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HEROKU_APP_NAME="website-breaker-demo"
+
+          # Placeholder for logic to determine if Heroku needs to check logs
+          # For example, you can use the Heroku API to check the status of the last deployment
+          HEROKU_STATUS=$(heroku releases -n 1 --json --app $HEROKU_APP_NAME | jq -r '.[0].status')
+          echo "Heroku Status: $HEROKU_STATUS"
+
+          if [ "$HEROKU_STATUS" == "failed" ]; then
+            echo "❌ Heroku deployment failed. Creating a pull request for checking logs."
+
+            # Create a pull request
+            PR_TITLE="Fix Heroku Vulnerabilities"
+            PR_BODY="This pull request was automatically generated to trigger Heroku to check logs.🚀\n🌎 [View Site](https://$HEROKU_APP_NAME.herokuapp.com/)"
+
+            hub pull-request -m "$PR_TITLE" -b main -h github-actions -m "$PR_BODY"
+          else
             echo "✅ Heroku deployment successful."
           fi
         env:
