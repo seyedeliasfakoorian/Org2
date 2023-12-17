@@ -18,15 +18,11 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install Heroku CLI and GitHub CLI
+      - name: Install Heroku CLI
         run: |
           sudo npm install -g heroku
           heroku plugins:install heroku-builds
-          sudo apt-get install -y gh
-
-      - name: Set GH_TOKEN for GitHub CLI
-        run: echo "GH_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
-
+          
       - name: Check Heroku Deployment Status
         id: heroku_status
         run: |
@@ -44,11 +40,16 @@ jobs:
           PR_TITLE="Fix Heroku Vulnerabilities"
           PR_BODY="This pull request was generated because Heroku needs to check logs or deployment is failing 🚀 \n\ View Site: [Heroku App](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)"
 
-          echo "Attempting to create a pull request..."
+          # Set up Git configuration
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
+          # Create a new branch
+          git checkout -b github-actions
+
+          # Commit and push changes
+          git commit -m "Fix Heroku Vulnerabilities" --allow-empty
+          git push origin github-actions
+
+          # Create pull request using GitHub API
           gh pr create --title "$PR_TITLE" --body "$PR_BODY" --base main --head github-actions --label "github actions" --draft
-
-          # Get the current branch name
-          CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-
-          # Delete the branch
-          git push origin --delete "$CURRENT_BRANCH"
