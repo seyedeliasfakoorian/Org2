@@ -47,6 +47,7 @@ jobs:
 
       - name: Push changes to the repository
         run: |
+          git remote set-url origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
           git push origin HEAD:${{ github.ref }}
 
       - name: Create Pull Request
