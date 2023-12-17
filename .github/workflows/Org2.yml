@@ -13,10 +13,8 @@ jobs:
       HEROKU_APP_NAME: website-breaker-demo
 
     steps:
-      - name: Checkout repository code and create new branch
+      - name: Checkout repository code
         uses: actions/checkout@v4
-        with:
-          ref: 'refs/heads/github-actions'
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
