@@ -45,13 +45,6 @@ jobs:
           git config --global user.name "GitHub Actions"
           git commit --allow-empty -am "Fix Heroku Vulnerabilities"
 
-      - name: Push changes to the repository
-        run: |
-          git remote set-url origin "https://github.com/$GITHUB_REPOSITORY.git"
-          git push origin HEAD:${{ github.ref }}
-        env:
-          PAT: ${{ secrets.PAT }}
-
       - name: Create Pull Request
         if: ${{ steps.heroku_status.outputs.HEROKU_STATUS != 'succeeded' }}
         run: |
