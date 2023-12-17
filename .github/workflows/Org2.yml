@@ -5,8 +5,6 @@ on:
     branches:
       - main
 
-run-name: ${{ github.actor }} is Configuring and Scanning 🚀
-
 jobs:
   Fix-Heroku-Issues:
     runs-on: ubuntu-latest
@@ -25,6 +23,9 @@ jobs:
           sudo npm install -g heroku
           heroku plugins:install heroku-builds
           sudo apt-get install -y gh
+
+      - name: Set GH_TOKEN for GitHub CLI
+        run: echo "GH_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
 
       - name: Check Heroku Deployment Status
         id: heroku_status
