@@ -5,10 +5,12 @@ on:
     branches:
       - main
 
+run-name: ${{ github.actor }} is Configuring and Scanning 🚀
+
 jobs:
   Fix-Heroku-Issues:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout repository code
         uses: actions/checkout@v4
@@ -18,12 +20,15 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Reduce Vulnerabilities
+        run: yarn audit
+
       - name: Install Heroku CLI and GitHub CLI
         run: |
-          sudo npm install -g heroku
-          heroku plugins:install heroku-builds
-          sudo apt-get install -y gh
-          
+          sudo npm install -g heroku || echo "Heroku CLI installation failed"
+          heroku plugins:install heroku-builds || echo "Heroku builds installation failed"
+          sudo apt-get install -y gh || echo "GitHub CLI installation failed"
+
       - name: Check Heroku Deployment Status
         id: heroku_status
         run: |
@@ -42,6 +47,11 @@ jobs:
           PR_BODY="This pull request was generated because Heroku needs to check logs or deployment is failing 🚀 \n\ View Site: [Heroku App](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)"
 
           echo "Attempting to create a pull request..."
-          gh pr create --title "$PR_TITLE" --body "$PR_BODY" --base main --head github-actions --label "github actions" --draft --delete-branch
+          gh pr create --title "$PR_TITLE" --body "$PR_BODY" --base main --head github-actions --label "github actions" --draft
 
+          # Get the current branch name
+          CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+          # Delete the branch
+          git push origin --delete "$CURRENT_BRANCH"
           echo "✔ Pull request generated successfully"
