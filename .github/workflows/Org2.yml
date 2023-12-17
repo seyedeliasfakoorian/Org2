@@ -34,7 +34,7 @@ jobs:
           echo "Heroku Status: $HEROKU_STATUS"
         continue-on-error: true
 
-      - name: Create a new branch and check for changes
+      - name: Create new Branch
         run: git checkout -b github-actions
 
       - name: Check for changes
