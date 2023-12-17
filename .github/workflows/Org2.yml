@@ -49,6 +49,8 @@ jobs:
         run: |
           git remote set-url origin "https://github.com/$GITHUB_REPOSITORY.git"
           git push origin HEAD:${{ github.ref }}
+        env:
+          PAT: ${{ secrets.PAT }}
 
       - name: Create Pull Request
         if: ${{ steps.heroku_status.outputs.HEROKU_STATUS != 'succeeded' }}
