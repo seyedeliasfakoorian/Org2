@@ -47,12 +47,12 @@ jobs:
 
       - name: Push changes to the repository
         run: |
-          git push origin HEAD:${{ github.ref }}
+          git push origin HEAD:${{ github.ref }} --follow-tags
 
       - name: Create Pull Request
         if: ${{ steps.heroku_status.outputs.HEROKU_STATUS != 'succeeded' }}
         run: |
           PR_TITLE="Fix Heroku Vulnerabilities"
           PR_BODY="This pull request was generated because Heroku needs to check logs or deployment is failing 🚀 \n\ View Site: [Heroku App](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)"
-          
+
           gh pr create --title "$PR_TITLE" --body "$PR_BODY" --base main --head github-actions --label "github actions" --draft
