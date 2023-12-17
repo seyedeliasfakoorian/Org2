@@ -18,11 +18,12 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install Heroku CLI
+      - name: Install Heroku CLI and GitHub CLI
         run: |
           sudo npm install -g heroku
           heroku plugins:install heroku-builds
-          
+          sudo apt-get install -y gh
+
       - name: Check Heroku Deployment Status
         id: heroku_status
         run: |
@@ -33,6 +34,21 @@ jobs:
           echo "Heroku Status: $HEROKU_STATUS"
         continue-on-error: true
 
+      - name: Create a new branch
+        run: git checkout -b github-actions
+
+      - name: Commit changes
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git commit -am "Fix Heroku Vulnerabilities"
+
+      - name: Push changes to the new branch
+        run: git push origin github-actions
+
+      - name: Switch back to the main branch
+        run: git checkout main
+
       - name: Create Pull Request
         if: ${{ steps.heroku_status.outputs.HEROKU_STATUS != 'succeeded' }}
         run: |
@@ -40,16 +56,4 @@ jobs:
           PR_TITLE="Fix Heroku Vulnerabilities"
           PR_BODY="This pull request was generated because Heroku needs to check logs or deployment is failing 🚀 \n\ View Site: [Heroku App](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)"
 
-          # Set up Git configuration
-          git config --global user.name "${{ github.actor }}"
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-
-          # Create a new branch
-          git checkout -b github-actions
-
-          # Commit and push changes
-          git commit -m "Fix Heroku Vulnerabilities" --allow-empty
-          git push origin github-actions
-
-          # Create pull request using GitHub API
           gh pr create --title "$PR_TITLE" --body "$PR_BODY" --base main --head github-actions --label "github actions" --draft
