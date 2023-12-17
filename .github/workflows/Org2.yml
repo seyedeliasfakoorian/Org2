@@ -30,7 +30,7 @@ jobs:
       - name: Check Heroku Deployment Status
         id: heroku_status
         run: |
-          HEROKU_STATUS=$(curl -n -s https://api.heroku.com/apps/$HEROKU_APP_NAME/releases \
+          HEROKU_STATUS=$(curl -n -s https://api.heroku.com/apps/website-breaker-demo/releases \
                             -H "Accept: application/vnd.heroku+json; version=3" \
                             | jq -r '.[0].status // "succeeded"')
           echo "Heroku Status: $HEROKU_STATUS"
