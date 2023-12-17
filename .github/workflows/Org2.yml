@@ -20,20 +20,17 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Reduce Vulnerabilities
-        run: yarn audit
-
       - name: Install Heroku CLI and GitHub CLI
         run: |
-          sudo npm install -g heroku || echo "Heroku CLI installation failed"
-          heroku plugins:install heroku-builds || echo "Heroku builds installation failed"
-          sudo apt-get install -y gh || echo "GitHub CLI installation failed"
+          sudo npm install -g heroku
+          heroku plugins:install heroku-builds
+          sudo apt-get install -y gh
 
       - name: Check Heroku Deployment Status
         id: heroku_status
         run: |
           HEROKU_APP_NAME="website-breaker-demo"
-          HEROKU_STATUS=$(curl -n -s https://api.heroku.com/apps/$HEROKU_APP_NAME/releases \
+          HEROKU_STATUS=$(curl -n -s https://api.heroku.com/apps/website-breaker-demo/releases \
                             -H "Accept: application/vnd.heroku+json; version=3" \
                             | jq -r '.[0].status // "succeeded"')
           echo "Heroku Status: $HEROKU_STATUS"
@@ -54,4 +51,3 @@ jobs:
 
           # Delete the branch
           git push origin --delete "$CURRENT_BRANCH"
-          echo "✔ Pull request generated successfully"
