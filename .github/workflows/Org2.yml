@@ -50,6 +50,7 @@ jobs:
         if: ${{ steps.heroku_status.outputs.HEROKU_STATUS != 'failed' }}
         with:
             token: ${{ secrets.GITHUB_TOKEN }}
+            base: main
             branch: github-actions
             commit-message: Fix Heroku Vulnerabilities
             delete-branch: true
