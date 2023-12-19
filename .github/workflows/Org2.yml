@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  Fix-Heroku-Issues:
+  Fix-Heroku-Vulnerabilities:
     runs-on: ubuntu-latest
     
     env:
@@ -35,15 +35,6 @@ jobs:
                             | jq -r '.[0].status // "succeeded"')
           echo "Heroku Status: $HEROKU_STATUS"
         continue-on-error: true
-
-      - name: Create new Branch
-        run: git checkout -b github-actions
-
-      - name: Commit changes
-        run: |
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-          git config --global user.name "GitHub Actions"
-          git commit --allow-empty -am "Fix Heroku Vulnerabilities"
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
