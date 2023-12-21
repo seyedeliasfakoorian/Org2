@@ -9,9 +9,6 @@ jobs:
   Fix-Heroku-Vulnerabilities:
     runs-on: ubuntu-latest
     
-    env:
-      HEROKU_APP_NAME: website-breaker-demo
-
     steps:
       - name: Checkout repository code
         uses: actions/checkout@v4
@@ -30,12 +27,12 @@ jobs:
       - name: Check Heroku Deployment Status
         id: heroku_status
         run: |
-        HEROKU_STATUS=$(curl -n -s https://api.heroku.com/apps/website-breaker-demo/releases \
-                          -H "Accept: application/vnd.heroku+json; version=3" \
-                          -H "Authorization: Bearer ${{ steps.heroku_login.outputs.token }}" \
-                          | jq -r '.[0].status // "succeeded"')
-        echo "Heroku Status: $HEROKU_STATUS"
-      continue-on-error: true
+          HEROKU_STATUS=$(curl -n -s https://api.heroku.com/apps/website-breaker-demo/releases \
+                            -H "Accept: application/vnd.heroku+json; version=3" \
+                            -H "Authorization: Bearer ${{ steps.heroku_login.outputs.token }}" \
+                            | jq -r '.[0].status // "succeeded"')
+          echo "Heroku Status: $HEROKU_STATUS"
+        continue-on-error: true  # Corrected indentation
         
       - name: Check Heroku Log Status
         run: heroku logs --app website-breaker-demo
@@ -45,15 +42,15 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-            token: ${{ secrets.GITHUB_TOKEN }}
-            base: main
-            branch: github-actions
-            commit-message: Fix Heroku Vulnerabilities
-            delete-branch: true
-            labels: |
-             github actions
-            reviewers: seyedeliasfakoorian
-            title: Fix Heroku Vulnerabilities
-            body: |
-              This pull request can fix vulnerabilities when Heroku has an issue deploying or needs to check logs🚀
-              🌎 [Heroku App](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: main
+          branch: github-actions
+          commit-message: Fix Heroku Vulnerabilities
+          delete-branch: true
+          labels: |
+            github actions
+          reviewers: seyedeliasfakoorian
+          title: Fix Heroku Vulnerabilities
+          body: |
+            This pull request can fix vulnerabilities when Heroku has an issue deploying or needs to check logs🚀
+            🌎 [Heroku App](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)
