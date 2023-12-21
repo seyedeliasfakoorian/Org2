@@ -1,7 +1,7 @@
 <?php
 
 // Load the head image
-$headImage = imagecreatefrompng('public/favicon.png');
+$headImage = imagecreatefromjpeg('public/favicon.jpg');  // Corrected function name
 
 // Get image dimensions
 $width = imagesx($headImage);
