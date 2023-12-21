@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install Heroku CLI and GitHub CLI
+      - name: Install Heroku CLI and GitHub CLI # Installs heroku commands and github commands
         run: |
           sudo npm install -g heroku
           heroku plugins:install heroku-builds
@@ -30,13 +30,15 @@ jobs:
         run: |
           HEROKU_STATUS=$(curl -n -s https://api.heroku.com/apps/website-breaker-demo/releases \
                             -H "Accept: application/vnd.heroku+json; version=3" \
-                            -H "Authorization: Bearer ${{ steps.heroku_login.outputs.token }}" \
+                            -H "Authorization: Bearer ${{ steps.heroku_login.outputs.token }}" \ # logs in to the account that is the owner of website-breaker-demo
                             | jq -r '.[0].status // "succeeded"')
           echo "Heroku Status: $HEROKU_STATUS"
-        continue-on-error: true  # Corrected indentation
+        continue-on-error: true
         
       - name: Check Heroku Log Status
-        run: heroku logs --app website-breaker-demo | ${{ steps.heroku_login.outputs.token }}
+        run: heroku logs --app website-breaker-demo
+        env:
+           ${{ steps.heroku_login.outputs.token }}
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
