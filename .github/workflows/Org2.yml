@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+run-name: ${{ github.actor }} is Configuring and Scanning 🚀
 
 jobs:
   Fix-Heroku-Vulnerabilities:
