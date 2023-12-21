@@ -35,9 +35,7 @@ jobs:
         continue-on-error: true  # Corrected indentation
         
       - name: Check Heroku Log Status
-        run: heroku logs --app website-breaker-demo
-        env:
-          HEROKU_API_KEY: ${{ steps.heroku_login.outputs.token }}
+        run: heroku logs --app website-breaker-demo | ${{ steps.heroku_login.outputs.token }}
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
