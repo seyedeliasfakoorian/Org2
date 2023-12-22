@@ -21,6 +21,6 @@ A: Splitting images on react apps takes some time. Because of Caching,
 
 Others
 ------------------------------------------------------------------------------
-Very special thanks to Depfu, Dependabot, and Snyk for keeping my
-dependencies up-to-date and github-actions with renovate to fix
-vulnerabilities in my repository
+Very special thanks to Depfu and Snyk for keeping my
+dependencies up-to-date and github-actions, renovate, and dependabot
+to fix vulnerabilities in my repository
