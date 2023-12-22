@@ -5,9 +5,6 @@ on:
     branches:
       - main
 
-env:
-  ACTIONS_STEP_DEBUG: true  # Enable debug logging for all steps
-
 run-name: ${{ github.actor }} is Configuring and Scanning 🚀
 
 jobs:
@@ -23,11 +20,13 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install Heroku CLI and GitHub CLI # Installs heroku commands and github commands
+      - name: Install Heroku CLI and GitHub CLI
         run: |
           sudo npm install -g heroku
           heroku plugins:install heroku-builds
           sudo apt-get install -y gh
+        env:
+          ACTIONS_RUNNER_DEBUG: true 
 
       - name: Check Heroku Deployment Status
         id: heroku_status
@@ -38,12 +37,13 @@ jobs:
                             | jq -r '.[0].status // "succeeded"')
           echo "Heroku Status: $HEROKU_STATUS"
         continue-on-error: true
+        env:
+          ACTIONS_RUNNER_DEBUG: true 
 
       - name: Check Heroku Log Status
         run: heroku logs --app website-breaker-demo
         env:
           HEROKU_API_KEY: ${{ steps.heroku_login.outputs.token }}
-        continue-on-error: true
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
@@ -60,3 +60,5 @@ jobs:
           body: |
             This pull request can fix vulnerabilities when Heroku has an issue deploying or needs to check logs🚀
             🌎 [Heroku App](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)
+        env:
+          ACTIONS_RUNNER_DEBUG: true 
