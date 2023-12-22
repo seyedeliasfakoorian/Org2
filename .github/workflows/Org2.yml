@@ -25,8 +25,7 @@ jobs:
           sudo npm install -g heroku
           heroku plugins:install heroku-builds
           sudo apt-get install -y gh
-        env:
-          ACTIONS_RUNNER_DEBUG: true 
+
 
       - name: Check Heroku Deployment Status
         id: heroku_status
@@ -37,8 +36,7 @@ jobs:
                             | jq -r '.[0].status // "succeeded"')
           echo "Heroku Status: $HEROKU_STATUS"
         continue-on-error: true
-        env:
-          ACTIONS_RUNNER_DEBUG: true 
+
 
       - name: Check Heroku Log Status
         run: heroku logs --app website-breaker-demo
@@ -60,5 +58,3 @@ jobs:
           body: |
             This pull request can fix vulnerabilities when Heroku has an issue deploying or needs to check logs🚀
             🌎 [Heroku App](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)
-        env:
-          ACTIONS_RUNNER_DEBUG: true 
