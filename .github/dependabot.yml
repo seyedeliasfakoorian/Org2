@@ -2,12 +2,15 @@ version: 2
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
-    labels: "github actions"
-    reviewers: "seyedeliasfakoorian"
+    labels:
+      - "github actions"
+    reviewers:
+      - "seyedeliasfakoorian"
     schedule:
       interval: "daily"
   - package-ecosystem: "npm"
     directory: "/"
-    reviewers: "seyedeliasfakoorian"
+    reviewers:
+      - "seyedeliasfakoorian"
     schedule:
       interval: "daily"
