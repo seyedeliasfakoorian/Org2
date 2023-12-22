@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+
+env:
+  ACTIONS_STEP_DEBUG: true  # Enable debug logging for all steps
+
 run-name: ${{ github.actor }} is Configuring and Scanning 🚀
 
 jobs:
@@ -34,11 +38,12 @@ jobs:
                             | jq -r '.[0].status // "succeeded"')
           echo "Heroku Status: $HEROKU_STATUS"
         continue-on-error: true
-        
+
       - name: Check Heroku Log Status
         run: heroku logs --app website-breaker-demo
         env:
           HEROKU_API_KEY: ${{ steps.heroku_login.outputs.token }}
+        continue-on-error: true
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
