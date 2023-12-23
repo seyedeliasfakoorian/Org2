@@ -2,6 +2,8 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
+    labels:
+      - "dependencies"
     reviewers:
       - "seyedeliasfakoorian"
     schedule:
@@ -10,12 +12,15 @@ updates:
     directory: "/"
     labels:
       - "github actions"
+      - "dependencies"
     reviewers:
       - "seyedeliasfakoorian"
     schedule:
       interval: "daily"
   - package-ecosystem: "composer"
     directory: "/"
+    labels:
+       - "dependencies"
     reviewers:
       - "seyedeliasfakoorian"
     schedule:
