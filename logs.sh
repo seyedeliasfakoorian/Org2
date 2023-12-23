@@ -24,22 +24,9 @@ fi
 echo "HEROKU_APP_NAME: $HEROKU_APP_NAME"
 echo "HEROKU_API_KEY: $HEROKU_API_KEY"
 
-# Decode Heroku API key
-HEROKU_API_KEY_DECODED=$(echo "$HEROKU_API_KEY" | base64 --decode 2>/dev/null)
-
-# Check if decoding was successful
-if [ $? -ne 0 ]; then
-    echo "Error: Failed to decode HEROKU_API_KEY."
-    exit 1
-fi
-
-# Extract email and password from API key using awk
-HEROKU_EMAIL=$(echo "$HEROKU_API_KEY_DECODED" | awk -F: '{print $1}')
-HEROKU_PASSWORD=$(echo "$HEROKU_API_KEY_DECODED" | awk -F: '{print $2}')
-
 # Log in using Heroku API key
 echo "Logging in to Heroku..."
-if ! printf "%s\n%s\n" "$HEROKU_EMAIL" "$HEROKU_PASSWORD" | heroku login --interactive; then
+if ! heroku auth:token > /dev/null 2>&1; then
     echo "Error: Heroku login failed."
     exit 1
 else
