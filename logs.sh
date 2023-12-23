@@ -14,6 +14,9 @@ if [ -z "$HEROKU_API_KEY" ]; then
     exit 1
 fi
 
+# Print the value of HEROKU_API_KEY for debugging
+echo "HEROKU_API_KEY: $HEROKU_API_KEY"
+
 # Set Heroku API key for authentication
 HEROKU_API_KEY_DECODED=$(echo "$HEROKU_API_KEY" | base64 --decode)
 
