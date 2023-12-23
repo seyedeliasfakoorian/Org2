@@ -21,11 +21,12 @@ if [ -z "$HEROKU_API_KEY" ]; then
     echo "Exiting without attempting Heroku login."
     exit 1
 else
-    echo "$HEROKU_API_KEY" | base64 --decode | heroku login --interactive
+    HEROKU_LOGIN_OUTPUT=$(echo "$HEROKU_API_KEY" | base64 --decode | heroku login --interactive 2>&1)
 
     # Check the exit code of heroku login
     if [ $? -ne 0 ]; then
         echo "Error: Heroku login failed."
+        echo "Heroku login output: $HEROKU_LOGIN_OUTPUT"
         exit 1
     else
         echo "Heroku login successful."
@@ -34,9 +35,7 @@ fi
 
 # Fetch logs using Heroku API
 echo "Fetching logs from Heroku..."
-if ! heroku logs --app "$HEROKU_APP_NAME" > heroku_logs.txt 2>&1; then
-    echo "Error: Failed to fetch logs from Heroku. Check heroku_logs.txt for details."
+if ! heroku logs --app "$HEROKU_APP_NAME"; then
+    echo "Error: Failed to fetch logs from Heroku."
     exit 1
-else
-    echo "Logs fetched successfully. Check heroku_logs.txt for details."
 fi
