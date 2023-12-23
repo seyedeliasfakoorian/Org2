@@ -41,10 +41,10 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
 
-      - name: Check Heroku Log Status
-        run: heroku logs -app website-breaker-demo
+      - name: Get Heroku Logs
+        run: ./get_heroku_logs.sh
         env:
-          HEROKU_API_KEY: ${{ steps.heroku_login.outputs.token }}
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
       - name: Check Heroku Deployment Status
         id: heroku_status
