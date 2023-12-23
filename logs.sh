@@ -22,7 +22,8 @@ if [ -z "$HEROKU_API_KEY" ]; then
 fi
 
 # Set the Heroku API key for authentication
-echo -n "$HEROKU_API_KEY" | base64 --decode > ~/.netrc
+HEROKU_API_KEY_DECODED=$(echo "$HEROKU_API_KEY" | base64 --decode)
+echo -e "machine api.heroku.com\n  login $HEROKU_API_KEY_DECODED" > ~/.netrc
 chmod 600 ~/.netrc
 
 # Fetch logs using Heroku API
