@@ -44,7 +44,7 @@ jobs:
       - name: Get Heroku Logs
         run: ./logs.sh
         env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_API_KEY_SECRET: ${{ secrets.HEROKU_API_KEY }}
 
       - name: Check Heroku Deployment Status
         id: heroku_status
