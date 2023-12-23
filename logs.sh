@@ -17,6 +17,7 @@ fi
 
 if [ -z "$HEROKU_API_KEY" ]; then
     echo "Error: HEROKU_API_KEY environment variable must be set."
+    echo "Exiting without attempting Heroku login."
     exit 1
 fi
 
@@ -26,10 +27,9 @@ echo "HEROKU_API_KEY: $HEROKU_API_KEY"
 
 # Log in using Heroku API key
 echo "Logging in to Heroku..."
-HEROKU_TOKEN=$(heroku auth:token 2>&1)
+heroku auth:token > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo "Error: Heroku login failed."
-    echo "HEROKU_TOKEN: $HEROKU_TOKEN"
     exit 1
 else
     echo "Heroku login successful."
