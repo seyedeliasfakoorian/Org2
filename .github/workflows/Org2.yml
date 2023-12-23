@@ -27,6 +27,23 @@ jobs:
           sudo apt-get install -y gh
 
 
+      - name: Login to Heroku Container
+        run: |
+          cat > ~/.netrc <<EOF
+            machine api.heroku.com
+              login $HEROKU_EMAIL
+              password $HEROKU_API_KEY
+            machine git.heroku.com
+              login $HEROKU_EMAIL
+              password $HEROKU_API_KEY
+          EOF
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+
+      - name: Check Heroku Log Status
+        run: heroku logs -app website-breaker-demo
+
       - name: Check Heroku Deployment Status
         id: heroku_status
         run: |
@@ -36,10 +53,6 @@ jobs:
                             | jq -r '.[0].status // "succeeded"')
           echo "Heroku Status: $HEROKU_STATUS"
         continue-on-error: true
-
-
-      - name: Check Heroku Log Status
-        run: heroku logs -app website-breaker-demo --no-browser --quiet
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
