@@ -1,12 +1,3 @@
-
-It seems that the script is not able to find the HEROKU_API_KEY environment variable, even though it's present in the environment variables list you provided. One reason this could happen is if the variable is set after the script starts running.
-
-To address this, you can try modifying your script to print out all environment variables at the beginning, before checking for the existence of HEROKU_API_KEY. This will help verify whether the variable is indeed set.
-
-Here's a modified version of your script:
-
-bash
-Copy code
 #!/bin/bash
 
 # Print all environment variables for debugging
