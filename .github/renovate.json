@@ -1,0 +1,54 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base", ":semanticCommits"],
+
+  // Disable automatic merging of updates
+  "automerge": false,
+
+  // Customize commit messages for semantic commits
+  "commitMessageTopic": "references to {{{depName}}}",
+  "semanticCommitType": "docs",
+  "semanticCommitScope": null,
+  "additionalBranchPrefix": "docs-",
+  "minimumReleaseAge": null,
+  "separateMajorMinor": false,
+
+  // Enable autodiscovery and set a filter for renovate.json files
+  "autodiscover": true,
+  "autodiscoverFilter": ".github/renovate.json",
+
+  // Define rules for package updates (minor and patch updates won't auto-merge)
+  "packageRules": [
+    {
+      "updateTypes": ["minor", "patch"],
+      "automerge": false
+    }
+  ],
+
+  // GitHub token for authentication
+  "token": "secrets.GITHUB_ACCESS_TOKEN",
+
+  // NPM token for authentication
+  "npmToken": "secrets.NPM_ACCESS_TOKEN",
+
+  // NPM registry authentication
+  "npmrc": {
+    "write": {
+      "//registry.npmjs.org/:_authToken": "secrets.NPM_AUTH_TOKEN"
+    }
+  },
+
+  // GitHub actor as the author for commits
+  "gitAuthor": "secrets.GITHUB_ACTOR",
+
+  // Logging level for debugging
+  "logLevel": "debug",
+
+  // Platform-specific configuration
+  "platform": "github",
+
+  // Disable Docker updates
+  "docker": {
+    "enabled": false
+  }
+}
