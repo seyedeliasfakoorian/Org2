@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Print all environment variables for debugging
-env
-
 # Check if required environment variables are set
 if [ -z "$HEROKU_APP_NAME" ]; then
     echo "Error: HEROKU_APP_NAME environment variable must be set."
