@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Check if required environment variables are set
-if [ -z "$HEROKU_APP_NAME" ] || [ -z "$HEROKU_API_KEY_SECRET" ]; then
-    echo "Error: HEROKU_APP_NAME and HEROKU_API_KEY_SECRET environment variables must be set."
+if [ -z "$HEROKU_APP_NAME" ] || [ -z "$HEROKU_API_KEY" ]; then
+    echo "Error: HEROKU_APP_NAME and HEROKU_API_KEY environment variables must be set."
     exit 1
 fi
 
 # Set Heroku API key for authentication
-HEROKU_API_KEY=$(echo "$HEROKU_API_KEY_SECRET" | base64 --decode)
+HEROKU_API_KEY=$(echo "$HEROKU_API_KEY" | base64 --decode)
 
 # Extract email and password from API key
 HEROKU_EMAIL=$(echo "$HEROKU_API_KEY" | cut -d: -f1)
