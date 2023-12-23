@@ -43,6 +43,8 @@ jobs:
 
       - name: Check Heroku Log Status
         run: heroku logs -app website-breaker-demo
+        env:
+          HEROKU_API_KEY: ${{ steps.heroku_login.outputs.token }}
 
       - name: Check Heroku Deployment Status
         id: heroku_status
