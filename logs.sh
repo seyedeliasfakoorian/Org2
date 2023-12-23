@@ -22,6 +22,14 @@ if [ -z "$HEROKU_API_KEY" ]; then
     exit 1
 else
     echo "$HEROKU_API_KEY" | base64 --decode | heroku login --interactive
+
+    # Check the exit code of heroku login
+    if [ $? -ne 0 ]; then
+        echo "Error: Heroku login failed."
+        exit 1
+    else
+        echo "Heroku login successful."
+    fi
 fi
 
 # Fetch logs using Heroku API
