@@ -43,7 +43,7 @@ jobs:
 
       - name: Get Heroku Logs
         run: |
-          ./get_heroku_logs.sh
+          ./logs.sh
         env:
           HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
           HEROKU_API_KEY_SECRET: ${{ secrets.HEROKU_API_KEY_SECRET }}
