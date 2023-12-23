@@ -12,13 +12,13 @@ if [ -z "$HEROKU_APP_NAME" ]; then
     exit 1
 fi
 
-if [ -z "$HEROKU_API_KEY" ]; then
-    echo "Error: HEROKU_API_KEY environment variable must be set."
+if [ -z "$secrets.HEROKU_API_KEY" ]; then
+    echo "Error: secrets.HEROKU_API_KEY environment variable must be set."
     exit 1
 fi
 
 # Decode Heroku API key for authentication
-HEROKU_API_KEY_DECODED=$(echo "$HEROKU_API_KEY" | base64 --decode)
+HEROKU_API_KEY_DECODED=$(echo "$secrets.HEROKU_API_KEY" | base64 --decode)
 
 # Create .netrc file for Heroku API key
 echo -e "machine api.heroku.com\n  login $HEROKU_API_KEY_DECODED" > ~/.netrc
