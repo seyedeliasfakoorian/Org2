@@ -11,6 +11,10 @@ if [ -z "$HEROKU_API_KEY" ]; then
     exit 1
 fi
 
+# Print environment variables for debugging
+echo "HEROKU_APP_NAME: $HEROKU_APP_NAME"
+echo "HEROKU_API_KEY: $HEROKU_API_KEY"
+
 # Set Heroku API key for authentication
 HEROKU_API_KEY_DECODED=$(echo "$HEROKU_API_KEY" | base64 --decode)
 
