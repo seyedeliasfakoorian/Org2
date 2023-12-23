@@ -42,9 +42,11 @@ jobs:
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
 
       - name: Get Heroku Logs
-        run: ./logs.sh
+        run: |
+          ./get_heroku_logs.sh
         env:
-          HEROKU_API_KEY_SECRET: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+          HEROKU_API_KEY_SECRET: ${{ secrets.HEROKU_API_KEY_SECRET }}
 
       - name: Check Heroku Deployment Status
         id: heroku_status
