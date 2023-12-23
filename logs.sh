@@ -18,23 +18,12 @@ fi
 # Set Heroku API key for authentication
 if [ -z "$HEROKU_API_KEY" ]; then
     echo "Error: HEROKU_API_KEY environment variable must be set."
-    echo "Exiting without attempting Heroku login."
     exit 1
 fi
 
-# Attempt Heroku login
-echo "Logging in to Heroku..."
-HEROKU_LOGIN_OUTPUT=$(echo "$HEROKU_API_KEY" | base64 --decode | heroku login --interactive 2>&1)
-
-# Check the exit code of heroku login
-if [ $? -ne 0 ]; then
-    echo "Error: Heroku login failed."
-    echo "Heroku login output:"
-    echo "$HEROKU_LOGIN_OUTPUT"
-    exit 1
-else
-    echo "Heroku login successful."
-fi
+# Set the Heroku API key for authentication
+echo -n "$HEROKU_API_KEY" | base64 --decode > ~/.netrc
+chmod 600 ~/.netrc
 
 # Fetch logs using Heroku API
 echo "Fetching logs from Heroku..."
