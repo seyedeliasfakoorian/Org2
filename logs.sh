@@ -1,4 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Check if heroku command is available
+if ! command -v heroku &> /dev/null; then
+    echo "Error: 'heroku' command not found. Please make sure it's installed."
+    exit 1
+fi
 
 # Print all environment variables for debugging
 env
@@ -18,8 +24,14 @@ fi
 echo "HEROKU_APP_NAME: $HEROKU_APP_NAME"
 echo "HEROKU_API_KEY: $HEROKU_API_KEY"
 
-# Set Heroku API key for authentication
-HEROKU_API_KEY_DECODED=$(echo "$HEROKU_API_KEY" | base64 --decode)
+# Decode Heroku API key
+HEROKU_API_KEY_DECODED=$(echo "$HEROKU_API_KEY" | base64 --decode 2>/dev/null)
+
+# Check if decoding was successful
+if [ $? -ne 0 ]; then
+    echo "Error: Failed to decode HEROKU_API_KEY."
+    exit 1
+fi
 
 # Extract email and password from API key using awk
 HEROKU_EMAIL=$(echo "$HEROKU_API_KEY_DECODED" | awk -F: '{print $1}')
@@ -36,7 +48,9 @@ fi
 
 # Fetch logs using Heroku API
 echo "Fetching logs from Heroku..."
-if ! heroku logs --app "$HEROKU_APP_NAME"; then
-    echo "Error: Failed to fetch logs from Heroku."
+if ! heroku logs --app "$HEROKU_APP_NAME" > heroku_logs.txt 2>&1; then
+    echo "Error: Failed to fetch logs from Heroku. Check heroku_logs.txt for details."
     exit 1
+else
+    echo "Logs fetched successfully. Check heroku_logs.txt for details."
 fi
