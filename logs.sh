@@ -26,9 +26,10 @@ echo "HEROKU_API_KEY: $HEROKU_API_KEY"
 
 # Log in using Heroku API key
 echo "Logging in to Heroku..."
-heroku auth:token > /dev/null 2>&1
+HEROKU_TOKEN=$(heroku auth:token 2>&1)
 if [ $? -ne 0 ]; then
     echo "Error: Heroku login failed."
+    echo "HEROKU_TOKEN: $HEROKU_TOKEN"
     exit 1
 else
     echo "Heroku login successful."
