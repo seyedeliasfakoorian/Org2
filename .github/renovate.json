@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", ":semanticCommits"],
+  "extends": ["config:base", ":semanticCommits"],
   
   "automerge": false,
   "commitMessageTopic": "references to {{{depName}}}",
@@ -39,6 +39,6 @@
   "platform": "github",
   
   "docker": {
-    "enabled": false
+    "enabled": true
   }
 }
