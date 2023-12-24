@@ -25,6 +25,8 @@
     }
   ],
 
+  "reviewers": ["seyedeliasfakoorian"],
+
   "token": "${GITHUB_TOKEN}",
   "npmToken": "${NPM_ACCESS_TOKEN}",
   
