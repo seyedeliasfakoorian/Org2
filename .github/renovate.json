@@ -12,12 +12,13 @@
   
   "autodiscover": true,
   "autodiscoverFilter": ".github/renovate.json",
-  
+
+  "ignorePaths": [
+    ".github/workflows/Org2.yml",
+    "dependabot.yml"
+  ],
+
   "packageRules": [
-    {
-      "matchCategories": ["docker"],
-      "enabled": false
-    },
     {
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": false
@@ -36,9 +37,5 @@
   "gitAuthor": "${GITHUB_ACTOR}@users.noreply.github.com",
   
   "logLevel": "debug",
-  "platform": "github",
-  
-  "docker": {
-    "enabled": true
-  }
+  "platform": "github"
 }
