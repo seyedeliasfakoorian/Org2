@@ -15,7 +15,8 @@
 
   "ignorePaths": [
     ".github/workflows/Org2.yml",
-    "dependabot.yml"
+    "dependabot.yml",
+    "index.php"
   ],
 
   "packageRules": [
