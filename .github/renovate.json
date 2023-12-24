@@ -31,7 +31,7 @@
     }
   },
 
-  "gitAuthor": "secrets.GITHUB_ACTOR",
+  "gitAuthor": "${{ secrets.GITHUB_ACTOR }}@users.noreply.github.com",
 
   "logLevel": "debug",
 
