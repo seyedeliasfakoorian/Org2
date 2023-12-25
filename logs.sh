@@ -1,24 +1,24 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Check if the 'heroku' command is available
-if ! command -v heroku &> /dev/null; then
+if [ ! "$(which heroku)" ]; then
     echo "Error: 'heroku' command not found. Please make sure it's installed."
     exit 1
 fi
 
 # Check if required environment variables are set
-if [ -z "secrets.HEROKU_APP_NAME" ]; then
-    echo "Error: secrets.HEROKU_APP_NAME environment variable must be set."
+if [ -z "$HEROKU_APP_NAME" ]; then
+    echo "Error: HEROKU_APP_NAME environment variable must be set."
     exit 1
 fi
 
-if [ -z "secrets.HEROKU_API_KEY" ]; then
-    echo "Error: secrets.HEROKU_API_KEY environment variable must be set."
+if [ -z "$HEROKU_API_KEY" ]; then
+    echo "Error: HEROKU_API_KEY environment variable must be set."
     exit 1
 fi
 
 # Decode Heroku API key for authentication
-HEROKU_API_KEY_DECODED=$(echo "$secrets.HEROKU_API_KEY" | base64 --decode)
+HEROKU_API_KEY_DECODED=$(echo "$HEROKU_API_KEY" | base64 -d)
 
 # Create .netrc file for Heroku API key
 echo -e "machine api.heroku.com\n  login $HEROKU_API_KEY_DECODED" > ~/.netrc
