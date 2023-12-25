@@ -72,3 +72,8 @@ jobs:
           body: |
             This pull request can fix vulnerabilities when Heroku has an issue deploying or needs to check logs🚀
             🌎 [Heroku App](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)
+      - name: Self Hosted Renovate
+        uses: renovatebot/github-action@v39.2.3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          configurationFile: .github/renovate.json
