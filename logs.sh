@@ -7,13 +7,13 @@ if ! command -v heroku &> /dev/null; then
 fi
 
 # Check if required environment variables are set
-if [ -z "secrets.HEROKU_APP_NAME" ]; then
-    echo "Error: secrets.HEROKU_APP_NAME environment variable must be set."
+if [ -z "$secrets.HEROKU_APP_NAME" ]; then
+    echo "Error: 'secrets.HEROKU_APP_NAME' environment variable must be set."
     exit 1
 fi
 
-if [ -z "secrets.HEROKU_API_KEY" ]; then
-    echo "Error: secrets.HEROKU_API_KEY environment variable must be set."
+if [ -z "$secrets.HEROKU_API_KEY" ]; then
+    echo "Error: 'secrets.HEROKU_API_KEY' environment variable must be set."
     exit 1
 fi
 
@@ -25,8 +25,9 @@ echo -e "machine api.heroku.com\n  login $HEROKU_API_KEY_DECODED" > ~/.netrc
 chmod 600 ~/.netrc
 
 # Fetch logs using Heroku API
-echo "Fetching logs from Heroku for app: website-breaker-demo..."
-if ! heroku logs --app website-breaker-demo; then
-    echo "Error: Failed to fetch logs from Heroku for app: website-breaker-demo"
+APP_NAME="$secrets.HEROKU_APP_NAME"
+echo "Fetching logs from Heroku for app: $APP_NAME..."
+if ! heroku logs --app "$APP_NAME"; then
+    echo "Error: Failed to fetch logs from Heroku for app: $APP_NAME"
     exit 1
 fi
