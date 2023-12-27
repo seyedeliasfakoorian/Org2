@@ -3,19 +3,13 @@
   "extends": ["config:base", ":semanticCommits"],
   
   "automerge": false,
-  "semanticCommitType": "docs",
   "semanticCommitScope": null,
   "minimumReleaseAge": null,
   "separateMajorMinor": false,
-  
   "autodiscover": true,
   "autodiscoverFilter": ".github/renovate.json",
+  "ignorePaths": [".github/workflows/Org2.yml", "dependabot.yml", "index.php"],
 
-  "ignorePaths": [
-    ".github/workflows/Org2.yml",
-    "dependabot.yml",
-    "index.php"
-  ],
 
   "packageRules": [
     {
@@ -35,8 +29,6 @@
     }
   },
   
-  "gitAuthor": "${GITHUB_ACTOR}@users.noreply.github.com",
-  
-  "logLevel": "debug",
+  "gitAuthor": "${GITHUB_ACTOR}@users.noreply.github.com",  
   "platform": "github"
 }
