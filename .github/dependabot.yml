@@ -17,11 +17,3 @@ updates:
       - "seyedeliasfakoorian"
     schedule:
       interval: "daily"
-  - package-ecosystem: "composer"
-    directory: "/"
-    labels:
-       - "dependencies"
-    reviewers:
-      - "seyedeliasfakoorian"
-    schedule:
-      interval: "daily"
