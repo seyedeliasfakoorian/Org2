@@ -3,10 +3,8 @@
   "extends": ["config:base", ":semanticCommits"],
   
   "automerge": false,
-  "commitMessageTopic": "references to {{{depName}}}",
   "semanticCommitType": "docs",
   "semanticCommitScope": null,
-  "additionalBranchPrefix": "docs-",
   "minimumReleaseAge": null,
   "separateMajorMinor": false,
   
