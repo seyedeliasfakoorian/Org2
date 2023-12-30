@@ -17,3 +17,11 @@ updates:
       - "seyedeliasfakoorian"
     schedule:
       interval: "daily"
+  - package-ecosystem: "nuget"
+    directory: "/"
+    labels:
+      - "dependencies"
+    reviewers:
+      - "seyedeliasfakoorian"
+    schedule:
+      interval: "daily"
