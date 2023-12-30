@@ -10,11 +10,11 @@ if (!$headImage) {
 
 // Get image dimensions
 $width = imagesx($headImage);
-$height = imagesy($headImage); // Add this line to get the height
+$height = imagesy($headImage);
 
-// Calculate the width of each piece
-$pieceWidth = $width / 3;
-$pieceHeight = $height / 4; // Calculate the height of each piece
+// Calculate the width and height of each piece
+$pieceWidth = $width / 750;
+$pieceHeight = $height / 667;
 
 // Array to store image sources
 $imageSources = [];
@@ -36,7 +36,7 @@ for ($i = 0; $i < 3; $i++) {
         ob_end_clean();
 
         // Encode the image data in base64
-        $base64Image = 'data:image/png;base64,' . base64_encode($imageData);
+        $base64Image = 'data:image/jpeg;base64,' . base64_encode($imageData);
 
         // Push the base64 encoded image to the array
         $imageSources[] = $base64Image;
