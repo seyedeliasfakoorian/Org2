@@ -31,7 +31,7 @@ for ($i = 0; $i < 3; $i++) {
 
         // Save the piece to a variable (base64 encoded)
         ob_start();
-        imagepng($piece);
+        imagejpeg($piece); // Use imagejpeg for JPEG images
         $imageData = ob_get_contents();
         ob_end_clean();
 
