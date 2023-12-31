@@ -49,8 +49,8 @@ HEROKU_STATUS=$(curl -n -s "$HEROKU_RELEASES_API_URL" \
   -H "Authorization: Bearer $HEROKU_API_KEY_DECODED" \
   | jq -r 'if type == "array" then .[0].status else "succeeded" end')
 
-# Print Heroku status
-echo "Heroku Deployment Status: $HEROKU_STATUS"
+# Print Heroku Log status
+echo "Heroku Log Status: $HEROKU_STATUS"
 
 # Check if deployment failed
 if [ "$HEROKU_STATUS" != "succeeded" ]; then
