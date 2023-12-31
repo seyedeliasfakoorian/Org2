@@ -48,30 +48,12 @@ jobs:
           HEROKU_API_KEY_SECRET: ${{ secrets.HEROKU_API_KEY }}
 
       - name: Check Heroku Deployment Status
-        id: heroku_status
         run: |
-            HEROKU_STATUS=$(curl -n -s https://api.heroku.com/apps/website-breaker-demo/releases \
-              -H "Accept: application/vnd.heroku+json; version=3" \
-              -H "Authorization: Bearer ${{ steps.heroku_login.outputs.token }}" \
-              | jq -r 'if type == "array" then .[0].status else "succeeded" end')
-             echo "Heroku Status: $HEROKU_STATUS"
-        continue-on-error: true
+          ./logs.sh
+        env:
+          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+          HEROKU_API_KEY_SECRET: ${{ secrets.HEROKU_API_KEY }}
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          base: main
-          branch: github-actions
-          commit-message: Fix Heroku Vulnerabilities
-          delete-branch: true
-          labels: |
-            github actions
-          reviewers: seyedeliasfakoorian
-          title: Fix Heroku Vulnerabilities
-          body: |
-            This pull request can fix vulnerabilities when Heroku has an issue deploying or needs to check logs🚀
-            🌎 [Heroku App](https://website-breaker-demo-2e92fbab7def.herokuapp.com/)
       - name: Self Hosted Renovate
         uses: renovatebot/github-action@v39.2.4
         with:
