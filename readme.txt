@@ -25,4 +25,4 @@ Very special thanks to Depfu and Snyk for keeping my
 dependencies up-to-date and github-actions and dependabot to fix
 vulnerabilities in my repository
 
-2 of the files in this repository encoded by Base64
+2 of the files in this repository are encoded by Base64
