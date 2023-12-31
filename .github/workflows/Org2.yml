@@ -54,6 +54,8 @@ jobs:
               -H "Accept: application/vnd.heroku+json; version=3" \
               -H "Authorization: Bearer ${{ steps.heroku_login.outputs.token }}" \
               | jq -r 'if type == "array" then .[0].status else "succeeded" end')
+             echo "Heroku Status: $HEROKU_STATUS"
+        continue-on-error: true
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
