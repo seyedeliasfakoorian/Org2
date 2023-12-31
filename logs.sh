@@ -44,13 +44,13 @@ if ! heroku logs --app website-breaker-demo; then
 fi
 
 # Make a request to Heroku API to get release status
-HEROKU_STATUS=$(curl -n -s "$HEROKU_RELEASES_API_URL" \
+HEROKU_DEPLOYMENT_STATUS=$(curl -n -s "$HEROKU_RELEASES_API_URL" \
   -H "Accept: application/vnd.heroku+json; version=3" \
   -H "Authorization: Bearer $HEROKU_API_KEY_DECODED" \
   | jq -r 'if type == "array" then .[0].status else "succeeded" end')
 
 # Print Heroku Log status
-echo "Heroku Log Status: $HEROKU_STATUS"
+echo "Heroku Deployment Status: $HEROKU_DEPLOYMENT_STATUS"
 
 # Check if deployment failed
 if [ "$HEROKU_STATUS" != "succeeded" ]; then
