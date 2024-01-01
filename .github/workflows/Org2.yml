@@ -42,14 +42,14 @@ jobs:
 
       - name: Check Heroku Log Status
         run: |
-          ./logs.sh
+          ./app.sh
         env:
           HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
           HEROKU_API_KEY_SECRET: ${{ secrets.HEROKU_API_KEY }}
 
       - name: Check Heroku Deployment Status
         run: |
-          ./logs.sh
+          ./app.sh
         env:
           HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
           HEROKU_API_KEY_SECRET: ${{ secrets.HEROKU_API_KEY }}
