@@ -60,7 +60,7 @@ jobs:
           HEROKU_API_KEY_SECRET: ${{ secrets.HEROKU_API_KEY }}
 
       - name: Self Hosted Renovate
-        uses: renovatebot/github-action@v40.1.4
+        uses: renovatebot/github-action@v40.1.5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           configurationFile: .github/renovate.json
