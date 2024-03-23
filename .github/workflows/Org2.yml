@@ -45,6 +45,9 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
 
+      - name: Print Out Logs
+        run: heroku logs --tail
+
       - name: Check Heroku Log Status
         run: |
           ./app.sh
