@@ -46,7 +46,7 @@ jobs:
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
 
       - name: Print Out Logs
-        run: heroku logs --tail
+        run: heroku logs --tail -a website-breaker-demo
 
       - name: Check Heroku Log Status
         run: |
