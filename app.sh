@@ -32,7 +32,7 @@ HEROKU_API_KEY_DECODED=$(echo "$HEROKU_API_KEY" | base64 --decode)
 
 # Fetch logs using Heroku API
 echo "Fetching logs from Heroku for app: $HEROKU_APP_NAME..."
-if ! HEROKU_API_KEY="$HEROKU_API_KEY_DECODED" heroku logs --app "$HEROKU_APP_NAME" 2>&1 >/dev/null; then
+if ! HEROKU_API_KEY="$HEROKU_API_KEY_DECODED" heroku logs --app "$HEROKU_APP_NAME" >/dev/null 2>&1; then
     echo "Error: Failed to fetch logs from Heroku for app: $HEROKU_APP_NAME"
     exit 1
 fi
