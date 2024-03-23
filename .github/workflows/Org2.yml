@@ -45,22 +45,11 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
 
-      - name: Print Out Logs
-        run: heroku logs --tail -a website-breaker-demo
-
-      - name: Check Heroku Log Status
-        run: |
-          ./app.sh
+      - name: Run script to check Heroku logs
         env:
-          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-          HEROKU_API_KEY_SECRET: ${{ secrets.HEROKU_API_KEY }}
-
-      - name: Check Heroku Deployment Status
-        run: |
-          ./app.sh
-        env:
-          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-          HEROKU_API_KEY_SECRET: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_APP_NAME: website-breaker-demo
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash app.sh
 
       - name: Self Hosted Renovate
         uses: renovatebot/github-action@v40.1.5
