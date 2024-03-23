@@ -32,7 +32,7 @@ HEROKU_API_KEY_DECODED=$(echo "$HEROKU_API_KEY" | base64 --decode)
 
 # Fetch logs using Heroku API
 echo "Fetching logs from Heroku for app: $HEROKU_APP_NAME..."
-if ! heroku logs --app "$HEROKU_APP_NAME"; then
+if ! HEROKU_API_KEY="$HEROKU_API_KEY_DECODED" heroku logs --app "$HEROKU_APP_NAME"; then
     echo "Error: Failed to fetch logs from Heroku for app: $HEROKU_APP_NAME"
     
     # Additional steps to create a pull request on GitHub for fixing log fetching failure
@@ -41,7 +41,7 @@ if ! heroku logs --app "$HEROKU_APP_NAME"; then
     # Assuming 'gh' command-line tool is installed and configured
     gh pr create --base main --head fix-heroku-log-fetching --title "Fix Heroku log fetching failure" --body "This pull request can fix log fetching issues when Heroku has an issue deploying or needs to check logs🚀
     🌎 [Heroku App](https://$HEROKU_APP_NAME.herokuapp.com/)" \
-    --base main --branch github-actions --commit-message "Fix Heroku Vulnerabilities" --delete-branch true --labels "github actions" --reviewers seyedeliasfakoorian
+    --base main --branch github-actions --commit-message "Fix Heroku Log Fetching Failure" --delete-branch true --labels "github actions" --reviewers seyedeliasfakoorian
 fi
 
 # Make a request to Heroku API to get release status
@@ -51,25 +51,15 @@ HEROKU_DEPLOYMENT_STATUS=$(curl -n -s "$HEROKU_RELEASES_API_URL" \
   | jq -r 'if type == "array" then .[0].status else "succeeded" end')
 
 # Print Heroku Log status
-echo "Heroku Log Status: $HEROKU_LOG_STATUS"
+echo "Heroku Deployment Status: $HEROKU_DEPLOYMENT_STATUS"
 
 # Check if deployment failed
-if [ "$HEROKU_STATUS" != "succeeded" ]; then
+if [ "$HEROKU_DEPLOYMENT_STATUS" != "succeeded" ]; then
   # Additional steps to create a pull request on GitHub for fixing Heroku deployment failure
   echo "Creating a pull request for Heroku deployment failure..."
   
   # Assuming 'gh' command-line tool is installed and configured
   gh pr create --base main --head fix-heroku-deployment --title "Fix Heroku deployment failure" --body "This pull request can fix deployment issues when Heroku has an issue deploying or needs to check logs🚀
   🌎 [Heroku App](https://$HEROKU_APP_NAME.herokuapp.com/)" \
-  --base main --branch github-actions --commit-message "Fix Heroku Vulnerabilities" --delete-branch true --labels "github actions" --reviewers seyedeliasfakoorian
-fi
-
-# If both log fetching and deployment fail, create a combined pull request
-if [ "$HEROKU_STATUS" != "succeeded" ] && ! heroku logs --app "$HEROKU_APP_NAME"; then
-    echo "Creating a pull request for both issues..."
-    
-    # Assuming 'gh' command-line tool is installed and configured
-    gh pr create --base main --head fix-both-issues --title "Fix Heroku Log Fetching and Deployment Failures" --body "This pull request can fix both log fetching and deployment issues when Heroku has an issue deploying or needs to check logs🚀
-    🌎 [Heroku App](https://$HEROKU_APP_NAME.herokuapp.com/)" \
-    --base main --branch github-actions --commit-message "Fix Heroku Vulnerabilities" --delete-branch true --labels "github actions" --reviewers seyedeliasfakoorian
+  --base main --branch github-actions --commit-message "Fix Heroku Deployment Failure" --delete-branch true --labels "github actions" --reviewers seyedeliasfakoorian
 fi
