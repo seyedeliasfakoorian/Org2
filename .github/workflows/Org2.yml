@@ -45,10 +45,11 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
 
-      - name: Run script to check Heroku logs
+      - name: Run app.sh
         env:
-          HEROKU_APP_NAME: website-breaker-demo
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+          HEROKU_API_KEY_SECRET: ${{ secrets.HEROKU_API_KEY }}
         run: bash app.sh
 
       - name: Self Hosted Renovate
