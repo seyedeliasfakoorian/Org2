@@ -20,7 +20,7 @@
   "devDependencies": {
     "@babel/runtime": "^7.4.5",
     "tape": "^5.7.2",
-    "dotenv": "^16.3.1",
+    "dotenv": "^18.0.7",
     "prop-types": "^15.5.7"
   },
   "repository": {
